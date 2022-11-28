@@ -64,7 +64,7 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
 
-        st.subheader('Drop label dataset')
+        st.subheader('Drop Label Dataset')
         x = cardio.drop(columns=['id','cardio'])
         x
 
@@ -153,7 +153,7 @@ with st.container():
 
         st.subheader('Load Data Cardio Terbaru')
         x = cardio.drop(columns=['id','cardio'])
-        x
+        
 
         #Normalisasi
         st.subheader('Normalisasi Data')
@@ -163,7 +163,6 @@ with st.container():
         scaled = scaler.fit_transform(x)
         features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        scaled_features
 
         import joblib
         file_name_norm = "norm.sav"
