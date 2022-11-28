@@ -58,7 +58,25 @@ with st.container():
         cardio
 
     elif choose == "Preprocessing":
-        st.title('Ini Halaman Preprocessing')
+        #dataset
+        cardio = pd.read_csv('baru-car (2).csv')
+
+        #data y_training
+        y = cardio['cardio'].values
+
+        st.subheader('Drop label dataset')
+        x = cardio.drop(columns=['id','cardio'])
+        x
+
+        #Normalisasi
+        st.subheader('Normalisasi Data')
+        from sklearn.preprocessing import MinMaxScaler
+
+        scaler = MinMaxScaler()
+        scaled = scaler.fit_transform(x)
+        features_names = x.columns.copy()
+        scaled_features = pd.DataFrame(scaled, columns = features_names)
+        scaled_features
 
     elif choose == "Modelling":
         st.title('Model :')
