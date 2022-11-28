@@ -158,7 +158,7 @@ with st.container():
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x)
+        scaled = scaler.fit_transform(df)
         features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
 
