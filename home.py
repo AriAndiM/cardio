@@ -141,9 +141,7 @@ with st.container():
             return fitur
 
         #inputan
-        st.subheader('Load Data Input')
         df = input_user()
-        st.write(df)
 
         #dataset
         cardio = pd.read_csv('baru-car (2).csv')
@@ -181,6 +179,10 @@ with st.container():
         prediksi = gnb.predict(df)
         prediksi_probas = gnb.predict_proba(df)
         prediksi[0]
+        if(prediksi == 0):
+            st.caption('negatif')
+        elif(prediksi == 1):
+            st.caption('positif')
 
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
