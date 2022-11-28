@@ -165,7 +165,7 @@ with st.container():
         prediksi_probas = gnb.predict_proba(df)
         prediksi[0]
 
-#         st.subheader('Skore :', gnb.score(test, test_label))
+        st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
         # st.subheader('Class Label')
         # target_names = cardio.cardio.unique()
