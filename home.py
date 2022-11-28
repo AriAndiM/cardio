@@ -149,12 +149,12 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
 
-        st.subheader('Load Data Cardio Terbaru')
+#         st.subheader('Load Data Cardio Terbaru')
         x = cardio.drop(columns=['id','cardio'])
         
 
         #Normalisasi
-        st.subheader('Normalisasi Data')
+#         st.subheader('Normalisasi Data')
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
