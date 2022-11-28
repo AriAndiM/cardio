@@ -128,7 +128,7 @@ with st.container():
         st.write(df)
 
         #dataset
-        cardio = pd.read_csv('cardio.csv')
+        cardio = pd.read_csv('baru-car (2).csv')
 
         #data y_training
         y = cardio['cardio'].values
