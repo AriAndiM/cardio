@@ -78,7 +78,7 @@ with st.container():
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         scaled_features
                 
-        st.subheader('AKurasi Gaussian')
+        st.subheader('Akurasi Gaussian')
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
         from sklearn.metrics import accuracy_score
@@ -90,8 +90,22 @@ with st.container():
         
         gnb = GaussianNB()
         gnb.fit(training, training_label)
-        st.write(gnb.score(test, test_label))
+        st.write('Akurasi :', gnb.score(test, test_label))
 
+        st.subheader('Akurasi KNN')
+        #Model Knn
+        from sklearn.neighbors import KNeighborsClassifier
+        from sklearn.metrics import accuracy_score
+        from sklearn.model_selection import train_test_split
+
+        #Splitting Data
+        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        
+        knn = KNeighborsClassifier()
+        knn.fit(training, training_label)
+        st.write(''Akurasi :', knn.score(test, test_label))
+        
     elif choose == "Modelling":
         st.title('Model :')
         st.subheader("1. Naive Bayes")
