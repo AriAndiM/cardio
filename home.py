@@ -128,13 +128,10 @@ with st.container():
 
         #data y_training
         y = cardio['cardio'].values
-
-        st.subheader('Drop Label Dataset')
+        #drop fitur id dan cardio
         x = cardio.drop(columns=['id','cardio'])
         
-
         #Normalisasi
-        st.subheader('Normalisasi Data')
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
