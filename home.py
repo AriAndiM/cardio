@@ -90,7 +90,6 @@ with st.container():
         
         gnb = GaussianNB()
         gnb.fit(training, training_label)
-        acc_gnb = 
         st.write('Akurasi :', gnb.score(test, test_label))
 
         st.subheader('Akurasi KNN')
