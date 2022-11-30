@@ -104,7 +104,7 @@ with st.container():
         
         knn = KNeighborsClassifier()
         knn.fit(training, training_label)
-        st.write(''Akurasi :', knn.score(test, test_label))
+        st.write('Akurasi :', knn.score(test, test_label))
         
     elif choose == "Modelling":
         st.title('Model :')
