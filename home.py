@@ -78,48 +78,48 @@ with st.container():
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         scaled_features
                 
-        st.subheader('Akurasi Gaussian')
-        #Model Gaussian 
-        from sklearn.naive_bayes import GaussianNB
-        from sklearn.metrics import accuracy_score
-        from sklearn.model_selection import train_test_split
+        # st.subheader('Akurasi Gaussian')
+        # #Model Gaussian 
+        # from sklearn.naive_bayes import GaussianNB
+        # from sklearn.metrics import accuracy_score
+        # from sklearn.model_selection import train_test_split
 
-        #Splitting Data
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # #Splitting Data
+        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        gnb = GaussianNB()
-        gnb.fit(training, training_label)
-        st.write('Akurasi :', gnb.score(test, test_label))
+        # gnb = GaussianNB()
+        # gnb.fit(training, training_label)
+        # st.write('Akurasi :', gnb.score(test, test_label))
 
-        st.subheader('Akurasi KNN')
-        #Model Knn
-        from sklearn.neighbors import KNeighborsClassifier
-        from sklearn.metrics import accuracy_score
-        from sklearn.model_selection import train_test_split
+        # st.subheader('Akurasi KNN')
+        # #Model Knn
+        # from sklearn.neighbors import KNeighborsClassifier
+        # from sklearn.metrics import accuracy_score
+        # from sklearn.model_selection import train_test_split
 
-        #Splitting Data
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # #Splitting Data
+        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        knn = KNeighborsClassifier(n_neighbors=5)
-        knn.fit(training, training_label)
-        st.write('Akurasi :', knn.score(test, test_label))
+        # knn = KNeighborsClassifier(n_neighbors=5)
+        # knn.fit(training, training_label)
+        # st.write('Akurasi :', knn.score(test, test_label))
         
-        st.subheader('Akurasi Decision Tree')
-        #Model Knn
-        from sklearn import tree
-        from sklearn.tree import DecisionTreeClassifier
-        from sklearn.metrics import accuracy_score
-        from sklearn.model_selection import train_test_split
+        # st.subheader('Akurasi Decision Tree')
+        # #Model Knn
+        # from sklearn import tree
+        # from sklearn.tree import DecisionTreeClassifier
+        # from sklearn.metrics import accuracy_score
+        # from sklearn.model_selection import train_test_split
 
-        #Splitting Data
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # #Splitting Data
+        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        dt = DecisionTreeClassifier()
-        dt.fit(training, training_label)
-        st.write('Akurasi :', dt.score(test, test_label))
+        # dt = DecisionTreeClassifier()
+        # dt.fit(training, training_label)
+        # st.write('Akurasi :', dt.score(test, test_label))
         
         
     elif choose == "Modelling":
@@ -153,7 +153,7 @@ with st.container():
         training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        st.title('Model :')
+        st.title('Modelling')
         st.subheader("1. Naive Bayes")
         st.caption("Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian. ")
         st.caption("Rumus :")
