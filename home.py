@@ -102,7 +102,7 @@ with st.container():
         training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        knn = KNeighborsClassifier(n_neighbors=8)
+        knn = KNeighborsClassifier(n_neighbors=15)
         knn.fit(training, training_label)
         st.write('Akurasi :', knn.score(test, test_label))
         
