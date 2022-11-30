@@ -54,12 +54,12 @@ with st.container():
 
     elif choose == "Dataset":
         st.subheader('Dataset Cardiovascular')
-        cardio = pd.read_csv('baru-car (2).csv')
+        cardio = pd.read_csv('cardiovascular.csv')
         cardio
 
     elif choose == "Preprocessing":
         #dataset
-        cardio = pd.read_csv('baru-car (2).csv')
+        cardio = pd.read_csv('cardiovascular.csv')
 
         #data y_training
         y = cardio['cardio'].values
@@ -172,7 +172,7 @@ with st.container():
         df = input_user()
 
         #dataset
-        cardio = pd.read_csv('baru-car (2).csv')
+        cardio = pd.read_csv('cardiovascular.csv')
 
         #data y_training
         y = cardio['cardio'].values
