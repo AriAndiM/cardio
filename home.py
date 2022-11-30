@@ -102,9 +102,25 @@ with st.container():
         training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        knn = KNeighborsClassifier()
+        knn = KNeighborsClassifier(n_neighbors=3)
         knn.fit(training, training_label)
         st.write('Akurasi :', knn.score(test, test_label))
+        
+        st.subheader('Akurasi Decision Tree')
+        #Model Knn
+        from sklearn import tree
+        from sklearn.tree import DecisionTreeClassifier
+        from sklearn.metrics import accuracy_score
+        from sklearn.model_selection import train_test_split
+
+        #Splitting Data
+        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        
+        dt = DecisionTreeClassifier()
+        dt.fit(training, training_label)
+        st.write('Akurasi :', dt.score(test, test_label))
+        
         
     elif choose == "Modelling":
         st.title('Model :')
