@@ -90,6 +90,7 @@ with st.container():
         
         gnb = GaussianNB()
         gnb.fit(training, training_label)
+        acc_gnb = 
         st.write('Akurasi :', gnb.score(test, test_label))
 
         st.subheader('Akurasi KNN')
@@ -173,21 +174,20 @@ with st.container():
         st.caption("c. Gaussian Naive Bayes")
         st.caption("Distribusi Gaussian adalah asumsi pendistribusian nilai kontinu yang terkait dengan setiap fitur berisi nilai numerik. Ketika diplot, akan muncul kurva berbentuk lonceng yang simetris tentang rata-rata nilai fitur.")
         
-        st.subheader('Akurasi Gaussian')
         gnb = GaussianNB()
         gnb.fit(training, training_label)
         acc_gnb = gnb.score(test, test_label)
-        st.write('Akurasi :', acc_gnb*100, '%')
+        st.subheader('Akurasi Gaussian : ', acc_gnb*100, '%')
         
         st.subheader("2. KNN")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
         st.caption("Rumus :")
         st.latex(r'''d(x,y) = \sqrt{\sum_{i=1}^{n}(x-y)^{2}}''')
         
-        st.subheader('Akurasi KNN')
         knn = KNeighborsClassifier(n_neighbors=5)
         knn.fit(training, training_label)
-        st.write('Akurasi :', knn.score(test, test_label)*100, '%')
+        acc_knn = knn.score(test, test_label)
+        st.subheader('Akurasi KNN : ', acc_knn*100, '%')
 
         st.subheader("3. Decision Tree")
         st.caption("Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan. ")
@@ -196,10 +196,10 @@ with st.container():
         st.caption("Rumus Gain:")
         st.latex(r'''Gain(S,A)=Entropy(S)-\sum_{i=1}^{n} * Entropy(S_{i})''')
         
-        st.subheader('Akurasi Decision Tree')
         dt = DecisionTreeClassifier()
         dt.fit(training, training_label)
-        st.write('Akurasi :', dt.score(test, test_label)*100, '%')
+        acc_dt = dt.score(test, test_label)
+        st.subheader('Akurasi Decision Tree : ', acc_dt*100, '%')
 
     elif choose == "Predict":
 
