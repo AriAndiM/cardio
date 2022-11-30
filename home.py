@@ -176,7 +176,7 @@ with st.container():
         st.subheader('Akurasi Gaussian')
         gnb = GaussianNB()
         gnb.fit(training, training_label)
-        st.text('Akurasi :', round(gnb.score(test, test_label), 2))
+        st.text('Akurasi :', round((gnb.score(test, test_label)), 2))
         
         st.subheader("2. KNN")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
@@ -186,7 +186,7 @@ with st.container():
         st.subheader('Akurasi KNN')
         knn = KNeighborsClassifier(n_neighbors=5)
         knn.fit(training, training_label)
-        st.text('Akurasi :', round(knn.score(test, test_label), 2))
+        st.text('Akurasi :', round((knn.score(test, test_label)), 2))
 
         st.subheader("3. Decision Tree")
         st.caption("Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan. ")
@@ -198,7 +198,7 @@ with st.container():
         st.subheader('Akurasi Decision Tree')
         dt = DecisionTreeClassifier()
         dt.fit(training, training_label)
-        st.text('Akurasi :', round(dt.score(test, test_label), 2))
+        st.text('Akurasi :', round((dt.score(test, test_label)), 2))
 
     elif choose == "Predict":
 
