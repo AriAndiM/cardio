@@ -186,7 +186,6 @@ with st.container():
         st.subheader('Akurasi KNN')
         knn = KNeighborsClassifier(n_neighbors=5)
         knn.fit(training, training_label)
-        acc_knn = 
         st.text('Akurasi :', knn.score(test, test_label)*100, '%')
 
         st.subheader("3. Decision Tree")
