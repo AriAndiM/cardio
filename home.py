@@ -77,6 +77,20 @@ with st.container():
         features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         scaled_features
+        
+        #Splitting Data
+        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        
+        st.subheader('AKurasi Gaussian')
+        #Model Gaussian 
+        from sklearn.naive_bayes import GaussianNB
+        from sklearn.metrics import accuracy_score
+        from sklearn.model_selection import train_test_split
+
+        gnb = GaussianNB()
+        gnb.fit(training, training_label)
+        st.write(gnb.score(test, test_label))
 
     elif choose == "Modelling":
         st.title('Model :')
