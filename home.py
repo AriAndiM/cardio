@@ -176,7 +176,8 @@ with st.container():
         st.subheader('Akurasi Gaussian')
         gnb = GaussianNB()
         gnb.fit(training, training_label)
-        st.text('Akurasi :', gnb.score(test, test_label)*100, '%')
+        acc_gnb = gnb.score(test, test_label)
+        st.text('Akurasi :', acc_gnb*100, '%')
         
         st.subheader("2. KNN")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
