@@ -123,6 +123,39 @@ with st.container():
         
         
     elif choose == "Modelling":
+        #dataset
+        cardio = pd.read_csv('cardiovascular.csv')
+
+        #data y_training
+        y = cardio['cardio'].values
+
+        st.subheader('Drop Label Dataset')
+        x = cardio.drop(columns=['id','cardio'])
+        
+
+        #Normalisasi
+        st.subheader('Normalisasi Data')
+        from sklearn.preprocessing import MinMaxScaler
+
+        scaler = MinMaxScaler()
+        scaled = scaler.fit_transform(x)
+        features_names = x.columns.copy()
+        scaled_features = pd.DataFrame(scaled, columns = features_names)
+                
+        #Model Gaussian 
+        from sklearn.naive_bayes import GaussianNB
+        from sklearn.metrics import accuracy_score
+        from sklearn.model_selection import train_test_split
+        #Model Knn
+        from sklearn.neighbors import KNeighborsClassifier
+        #Model Decisiom Tree
+        from sklearn import tree
+        from sklearn.tree import DecisionTreeClassifier
+        
+        #Splitting Data
+        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        
         st.title('Model :')
         st.subheader("1. Naive Bayes")
         st.caption("Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian. ")
@@ -139,11 +172,21 @@ with st.container():
         st.caption("Tipe ini mirip dengan tipe Multinomial, namun klasifikasinya lebih berfokus pada hasil ya/tidak. Prediktor yang di-input adalah variabel boolean. Misalnya, prediksi atas sebuah kata muncul dalam teks atau tidak.")
         st.caption("c. Gaussian Naive Bayes")
         st.caption("Distribusi Gaussian adalah asumsi pendistribusian nilai kontinu yang terkait dengan setiap fitur berisi nilai numerik. Ketika diplot, akan muncul kurva berbentuk lonceng yang simetris tentang rata-rata nilai fitur.")
-
+        
+        st.subheader('Akurasi Gaussian')
+        gnb = GaussianNB()
+        gnb.fit(training, training_label)
+        st.text('Akurasi :', round(gnb.score(test, test_label), 2))
+        
         st.subheader("2. KNN")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
         st.caption("Rumus :")
         st.latex(r'''d(x,y) = \sqrt{\sum_{i=1}^{n}(x-y)^{2}}''')
+        
+        st.subheader('Akurasi KNN')
+        knn = KNeighborsClassifier(n_neighbors=5)
+        knn.fit(training, training_label)
+        st.text('Akurasi :', round(knn.score(test, test_label), 2))
 
         st.subheader("3. Decision Tree")
         st.caption("Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan. ")
@@ -151,6 +194,11 @@ with st.container():
         st.latex(r'''Entropy (S) = \sum_{i=1}^{n}-\pi * log_{2}\pi ''')
         st.caption("Rumus Gain:")
         st.latex(r'''Gain(S,A)=Entropy(S)-\sum_{i=1}^{n} * Entropy(S_{i})''')
+        
+        st.subheader('Akurasi Decision Tree')
+        dt = DecisionTreeClassifier()
+        dt.fit(training, training_label)
+        st.text('Akurasi :', round(dt.score(test, test_label), 2))
 
     elif choose == "Predict":
 
