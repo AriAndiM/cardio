@@ -48,7 +48,7 @@ with st.container():
 
         st.markdown('<h2 style = "text-align: center;">Data tanpa label / class</h2>', unsafe_allow_html = True)
         #dataset
-        cardio = pd.read_csv('cardiovascular.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
