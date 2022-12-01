@@ -245,7 +245,7 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
         #dataset
-        cardio = pd.read_csv('cardiovascular.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
 
         #data y_training
         y = cardio['cardio'].values
