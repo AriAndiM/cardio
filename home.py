@@ -140,7 +140,7 @@ with st.container():
 
     elif choose == "Predict":
 
-        st.header('Masukkan Data Kesehatan Anda.')
+        st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda. </h1>', unsafe_allow_html = True)
 
         umur = st.number_input('Umur')
         gender = st.slider('Jenis Kelamin', 1, 2, 1)
@@ -201,13 +201,14 @@ with st.container():
         pred = gnb.predict(norm_input)
 
         st.write('score :', gnb.score(X_test, y_test))
-        # hasil = st.button("Cek Diagnosa")
-        #prediksi_probas = gnb.predict_proba(df)
-        pred[0]
-        if(pred == 0):
-            st.caption('negatif')
-        elif(pred == 1):
-            st.caption('positif')
+        cek = st.button("Cek Diagnosa")
+
+        if cek:
+            pred[0]
+            if(pred == 0):
+                st.caption('negatif')
+            elif(pred == 1):
+                st.caption('positif')
 
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
