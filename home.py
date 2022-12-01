@@ -42,7 +42,7 @@ with st.container():
     elif choose == "Preprocessing":
         st.markdown('<h1 style = "text-align: center;">Preprocessing</h1>', unsafe_allow_html = True)
         st.markdown('<div style = "text-align: justify;">**_Preprocessing_** adalah sebuah pengolahan data mentah sebelum data tersebut di proses.</div>', unsafe_allow_html = True)
-        st.markdown('<h2 style = "text-align: center;">Normalisasi<h2>')
+        st.markdown('<h2 style = "text-align: center;">Normalisasi</h2>')
         st.markdown('<div style = "text-align: justify;">**_Normalisasi_** adalah proses untuk melakukan transformasi dari format data asli menjadi format yang lebih efisien. Contohnya seperti mengubah data asli menjadi data yang bernilai antara 0 - 1. Berikut normalisasi menggunakan MinMax. Rumus MinMax :</div>', unsafe_allow_html = True)
         st.latex(r'''x^{'} = \frac{x - x_{min}}{x_{max}-x_{min}}''')
 
