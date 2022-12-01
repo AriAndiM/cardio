@@ -192,7 +192,7 @@ with st.container():
             ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
 
         if pilih_model == 'Gausian Naive Bayes':
-            cek = st.button("Cek Diagnosa"){type='primary'}
+            cek = st.button("Cek Diagnosa", type="primary")
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 gnb = GaussianNB()
