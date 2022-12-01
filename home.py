@@ -141,18 +141,6 @@ with st.container():
     elif choose == "Predict":
         # form data kesehatan
         st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda </h1>', unsafe_allow_html = True)
-
-        umur = st.number_input('Umur')
-        gender = st.slider('Jenis Kelamin', 1, 2, 1)
-        tinggi_badan = st.number_input('Tinggi Badan')
-        berat_badan = st.number_input('Berat Badan')
-        sistolik = st.number_input('Tekanan Darah Sistolik')
-        diastolik = st.number_input('Tekanan Darah Diastolik')
-        kolestrol = st.slider('Kolestrol', 1, 3, 1)
-        glukosa = st.slider('Glukosa', 1, 3, 1)
-        merokok = st.slider('Merokok', 0, 1, 0)
-        alkohol = st.slider('Alkohol', 0, 1, 0)
-        aktivitas = st.slider('Aktivitas', 0, 1, 0)
         #dataset
         cardio = pd.read_csv('cardiovascular2.csv')
 
@@ -160,7 +148,6 @@ with st.container():
         y = cardio['cardio'].values
         # data terbaru
         x = cardio.drop(columns=['id','cardio'])
-        
 
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
@@ -175,60 +162,78 @@ with st.container():
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
+        #splitting data
         X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
 
+        umur = st.number_input('Umur')
+        gender = st.slider('Jenis Kelamin', 1, 2, 1)
+        tinggi_badan = st.number_input('Tinggi Badan')
+        berat_badan = st.number_input('Berat Badan')
+        sistolik = st.number_input('Tekanan Darah Sistolik')
+        diastolik = st.number_input('Tekanan Darah Diastolik')
+        kolestrol = st.slider('Kolestrol', 1, 3, 1)
+        glukosa = st.slider('Glukosa', 1, 3, 1)
+        merokok = st.slider('Merokok', 0, 1, 0)
+        alkohol = st.slider('Alkohol', 0, 1, 0)
+        aktivitas = st.slider('Aktivitas', 0, 1, 0)
+
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
         x_min = x.min()
         x_max = x.max()
         norm_input = ((inputan - x_min)/(x_max - x_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
-        st.markdown('<h1 style = "text-align: center;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
-        option = st.selectbox(
-        '',
-        ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
-        if option == 'Gausian Naive Bayes':
-            model = 'Gaussian Naive Bayes'
-            cek = st.button("Cek Diagnosa")
-            if cek:
-                gnb = GaussianNB()
-                gnb.fit(X_train, y_train)
-                prediksi = gnb.predict(X_test)
-                pred = gnb.predict(norm_input)
-                if(pred == 0):
-                    st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
-                elif(pred == 1):
-                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
-        elif option == 'K-Nearest Neighbors (K-NN)':
-            model = 'K-Nearest Neighbors'
-        elif option == 'Decision Tree':
-            model = 'Decision Tree'
+        next_step = st.button("Next")
+
+        if next_step:
+            st.markdown('<h1 style = "text-align: center;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
+            option = st.selectbox(
+            '',
+            ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+            if option == 'Gausian Naive Bayes':
+                model = 'Gaussian Naive Bayes'
+                cek = st.button("Cek Diagnosa")
+                if cek:
+                    gnb = GaussianNB()
+                    gnb.fit(X_train, y_train)
+                    prediksi = gnb.predict(X_test)
+                    pred = gnb.predict(norm_input)
+                    if(pred == 0):
+                        st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
+                    elif(pred == 1):
+                        st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+            elif option == 'K-Nearest Neighbors (K-NN)':
+                model = 'K-Nearest Neighbors'
+            elif option == 'Decision Tree':
+                model = 'Decision Tree'
+
+
 
 #----------------------------------------------------------------
 #indentasi
-        gnb = GaussianNB()
-        filename = "GaussianNB.pkl"
+        # gnb = GaussianNB()
+        # filename = "GaussianNB.pkl"
 
-        gnb.fit(X_train, y_train)
-        prediksi = gnb.predict(X_test)
-        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        x_min = x.min()
-        x_max = x.max()
-        norm_input = ((inputan - x_min)/(x_max - x_min))
-        norm_input = np.array(norm_input).reshape(1, -1)
+        # gnb.fit(X_train, y_train)
+        # prediksi = gnb.predict(X_test)
+        # inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        # x_min = x.min()
+        # x_max = x.max()
+        # norm_input = ((inputan - x_min)/(x_max - x_min))
+        # norm_input = np.array(norm_input).reshape(1, -1)
 
-        pred = gnb.predict(norm_input)
+        # pred = gnb.predict(norm_input)
 
-        st.write('score :', gnb.score(X_test, y_test))
-        cek = st.button("Cek Diagnosa")
+        # st.write('score :', gnb.score(X_test, y_test))
+        # cek = st.button("Cek Diagnosa")
 
-        if cek:
-            pred[0]
-            if(pred == 0):
-                st.caption('negatif')
-            elif(pred == 1):
-                st.caption('positif')
+        # if cek:
+        #     pred[0]
+        #     if(pred == 0):
+        #         st.caption('negatif')
+        #     elif(pred == 1):
+        #         st.caption('positif')
 #----------------------------------------------------------------
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
