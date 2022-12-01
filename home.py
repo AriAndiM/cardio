@@ -244,13 +244,13 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
         #dataset
-        x = pd.read_csv('cardiovascular.csv')
+        cardio = pd.read_csv('cardiovascular.csv')
 
         #data y_training
         y = cardio['cardio'].values
 
 #         st.subheader('Load Data Cardio Terbaru')
-        data_drop = cardio.drop(columns=['id','cardio'])
+        x = cardio.drop(columns=['id','cardio'])
         
 
         #Normalisasi
