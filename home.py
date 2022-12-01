@@ -1,16 +1,12 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
 import streamlit.components.v1 as html
-from PIL import Image
-import numpy as np
 import pandas as pd
-from sklearn import metrics
+import numpy as np
 import pickle
-
-# import cv2
-# import pandas as pd
-# from st_aggrid import AgGrid
-# import plotly.express as px
+from sklearn.preprocessing import MinMaxScaler
+from sklearn import metrics
+from streamlit_option_menu import option_menu
+from PIL import Image
 import io
 
 with st.container():
@@ -54,74 +50,33 @@ with st.container():
         st.caption("12. Presence or absence of cardiovascular disease merupakan hasil diagnosa apakah pasien mengidap penyakit cardiovascular")
 
     elif choose == "Dataset":
-        st.subheader('Dataset Cardiovascular')
+        st.header('Dataset Cardiovascular')
         cardio = pd.read_csv('cardiovascular.csv')
         cardio
 
     elif choose == "Preprocessing":
+        st.header("Preprocessing")
+        st.caption("**_Preprocessing_** adalah sebuah pengolahan data mentah sebelum data tersebut di proses.")
+        st.subheader("Normalisasi")
+        st.caption("**_Normalisasi_** adalah proses untuk melakukan transformasi dari format data asli menjadi format yang lebih efisien. Contohnya seperti mengubah data asli menjadi data yang bernilai antara 0 - 1. Berikut normalisasi menggunakan MinMax. Rumus MinMax :")
+        st.latex(r'''x^{'} = \frac{x - x_{min}}{x_{max}-x_{min}}''')
+
+        st.subheader("Data tanpa label / class")
         #dataset
         cardio = pd.read_csv('cardiovascular.csv')
-
         #data y_training
         y = cardio['cardio'].values
-
-        st.subheader('Drop Label Dataset')
         x = cardio.drop(columns=['id','cardio'])
         x
 
         #Normalisasi
-        st.subheader('Normalisasi Data')
-        from sklearn.preprocessing import MinMaxScaler
+        st.subheader('Normalisasi Data Menggunakan MinMax')
 
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(x)
         features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         scaled_features
-                
-        # st.subheader('Akurasi Gaussian')
-        # #Model Gaussian 
-        # from sklearn.naive_bayes import GaussianNB
-        # from sklearn.metrics import accuracy_score
-        # from sklearn.model_selection import train_test_split
-
-        # #Splitting Data
-        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
-        
-        # gnb = GaussianNB()
-        # gnb.fit(training, training_label)
-        # st.write('Akurasi :', gnb.score(test, test_label))
-
-        # st.subheader('Akurasi KNN')
-        # #Model Knn
-        # from sklearn.neighbors import KNeighborsClassifier
-        # from sklearn.metrics import accuracy_score
-        # from sklearn.model_selection import train_test_split
-
-        # #Splitting Data
-        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
-        
-        # knn = KNeighborsClassifier(n_neighbors=5)
-        # knn.fit(training, training_label)
-        # st.write('Akurasi :', knn.score(test, test_label))
-        
-        # st.subheader('Akurasi Decision Tree')
-        # #Model Knn
-        # from sklearn import tree
-        # from sklearn.tree import DecisionTreeClassifier
-        # from sklearn.metrics import accuracy_score
-        # from sklearn.model_selection import train_test_split
-
-        # #Splitting Data
-        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
-        
-        # dt = DecisionTreeClassifier()
-        # dt.fit(training, training_label)
-        # st.write('Akurasi :', dt.score(test, test_label))
-        
         
     elif choose == "Modelling":
         #dataset
@@ -154,7 +109,7 @@ with st.container():
         training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
-        st.title('Modelling')
+        st.header('Modelling')
         st.subheader("1. Naive Bayes")
         st.caption("Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian. ")
         st.caption("Rumus :")
@@ -174,9 +129,10 @@ with st.container():
         gnb = GaussianNB()
         gnb.fit(training, training_label)
         acc_gnb = gnb.score(test, test_label)
-        st.write('Akurasi Gaussian : ', acc_gnb*100, '%')
+        akurasi_gnb = st.caption("**Akurasi Gaussian : **", acc_gnb*100, "**%**")
+        st.write(akurasi_gnb)
         
-        st.subheader("2. KNN")
+        st.subheader("2. K-Nearest Neighbors (K-NN)")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
         st.caption("Rumus :")
         st.latex(r'''d(x,y) = \sqrt{\sum_{i=1}^{n}(x-y)^{2}}''')
@@ -200,38 +156,7 @@ with st.container():
 
     elif choose == "Predict":
 
-        st.header('Parameter-Inputan')
-        # def input_user():
-        #     umur = st.number_input('Umur')
-        #     gender = st.slider('Jenis Kelamin', 1, 2, 1)
-        #     tinggi_badan = st.number_input('Tinggi Badan')
-        #     berat_badan = st.number_input('Berat Badan')
-        #     sistolik = st.number_input('Tekanan Darah Sistolik')
-        #     diastolik = st.number_input('Tekanan Darah Diastolik')
-        #     kolestrol = st.slider('Kolestrol', 1, 3, 1)
-        #     glukosa = st.slider('Glukosa', 1, 3, 1)
-        #     merokok = st.slider('Merokok', 0, 1, 0)
-        #     alkohol = st.slider('Alkohol', 0, 1, 0)
-        #     aktivitas = st.slider('Aktivitas', 0, 1, 0)
-        #     data = {
-        #         'Umur': umur,
-        #         'Jenis Kelamin': gender,
-        #         'Tinggi Badan': tinggi_badan,
-        #         'Berat Badan': berat_badan,
-        #         'Tekanan_Darah_Sistolik': sistolik,
-        #         'Tekanan_Darah_Diastolik': diastolik,
-        #         'Kolestrol': kolestrol,
-        #         'Glukosa': glukosa,
-        #         'Merokok': merokok,
-        #         'Alkohol': alkohol,
-        #         'Aktivitas': aktivitas
-        #     }
-
-        #     fitur = pd.DataFrame(data, index=[0])
-        #     return fitur
-
-        # #inputan
-        # df = input_user()
+        st.header('Masukkan Data Kesehatan Anda.')
 
         umur = st.number_input('Umur')
         gender = st.slider('Jenis Kelamin', 1, 2, 1)
