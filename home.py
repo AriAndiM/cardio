@@ -283,7 +283,7 @@ with st.container():
         gnb = GaussianNB()
         filename = "GaussianNB.pkl"
 
-        gnb.fit(training, training_label)
+        gnb.fit(X_train, y_train)
         prediksi = gnb.predict(X_test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
         # loaded_model = pickle.load(open(filename, 'rb'))
