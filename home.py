@@ -189,7 +189,7 @@ with st.container():
 
         pilih_model = st.radio(
             "Pilih Model",
-            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
 
         if pilih_model == 'Gausian Naive Bayes':
             cek = st.button("Cek Diagnosa")
@@ -207,7 +207,7 @@ with st.container():
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
 
-        elif option == 'K-Nearest Neighbors (K-NN)':
+        elif option == 'K-Nearest Neighbors':
             cek = st.button("Cek Diagnosa")
             if cek:
                 knn = KNeighborsClassifier()
