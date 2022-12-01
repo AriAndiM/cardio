@@ -291,7 +291,7 @@ with st.container():
         st.write('score :', gnb.score(X_test, y_test))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
-        pred[0]
+        pred
         if(pred == 0):
             st.caption('negatif')
         elif(pred == 1):
