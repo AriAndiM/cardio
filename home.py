@@ -294,11 +294,11 @@ with st.container():
         st.write('score :', gnb.score(X_test, y_test))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
-        pred
-        # if(pred == 0):
-        #     st.caption('negatif')
-        # elif(pred == 1):
-        #     st.caption('positif')
+        pred[0]
+        if(pred == 0):
+            st.caption('negatif')
+        elif(pred == 1):
+            st.caption('positif')
 
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
