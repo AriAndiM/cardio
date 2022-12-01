@@ -23,17 +23,15 @@ with st.container():
         )
 
     if choose == "Home":
-        st.markdown('<h1 style = "text-align: center;">Cardiovascular Disease</h1>', unsafe_allow_html = True)
-        st.markdown('<div style ="text-align: justify;">Penyakit kardiovaskular (CVD) adalah istilah bagi serangkaian gangguan yang menyerang jantung dan pembuluh darah, termasuk penyakit jantung koroner (CHD), penyakit serebrovaskular, hipertensi (tekanan darah tinggi), dan penyakit vaskular perifer (PVD). Penyebab penyakit kardiovaskular paling umum adalah aterosklerosis atau penumpukan lemak di dinding bagian dalam pembuluh darah yang mengalir ke jantung atau otak. Kondisi ini menyebabkan pembuluh darah tersumbat atau pecah.</div>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center;"> Cardiovascular Disease </h1>', unsafe_allow_html = True)
+        st.markdown('<div style ="text-align: justify;"> Penyakit kardiovaskular (CVD) adalah istilah bagi serangkaian gangguan yang menyerang jantung dan pembuluh darah, termasuk penyakit jantung koroner (CHD), penyakit serebrovaskular, hipertensi (tekanan darah tinggi), dan penyakit vaskular perifer (PVD). Penyebab penyakit kardiovaskular paling umum adalah aterosklerosis atau penumpukan lemak di dinding bagian dalam pembuluh darah yang mengalir ke jantung atau otak. Kondisi ini menyebabkan pembuluh darah tersumbat atau pecah. </div>', unsafe_allow_html = True)
         logo = Image.open('jantung.png')
         st.image(logo, caption='')
 
     elif choose == "Deskripsi Data":
-        st.title('Deskripsi Data')
-        st.subheader('Ada 3 jenis fitur input :')
-        st.caption("a. Objektif : factual information;")
-        st.caption("b. Penelitian / penyelidikan : hasil pemeriksaan medis;")
-        st.caption("c. Subjektif : informasi yang diberikan oleh pasien.")
+        st.markdown('<h1 style = "text-align: center;"> Deskripsi Data </h1>', unsafe_allow_html = True)
+        st.markdown('<h2>Ada 3 jenis fitur input :</h2>', unsafe_allow_html = True)
+        st.markdown('<ol type = "a"><li>Objektif : factual information;</li><li>Penelitian / penyelidikan : hasil pemeriksaan medis;</li><li>Subjektif : informasi yang diberikan oleh pasien.</li></ol>')
 
         st.subheader('Fitur Dataset:')
         st.caption("1. Age merupakan umur dari pasien yang diukur dalam satuan hari dengan tipe data int")
