@@ -200,7 +200,7 @@ with st.container():
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
                 elif(pred == 1):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
@@ -217,7 +217,7 @@ with st.container():
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
 
                 elif(pred == 1):
                     st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
@@ -235,7 +235,7 @@ with st.container():
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
                 elif(pred == 1):
                     st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
