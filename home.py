@@ -140,7 +140,7 @@ with st.container():
 
     elif choose == "Predict":
         # form data kesehatan
-        st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda </h1>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center;"> Masukkan Data Kesehatan Anda </h3>', unsafe_allow_html = True)
         #dataset
         cardio = pd.read_csv('cardiovascular2.csv')
 
@@ -187,10 +187,10 @@ with st.container():
         next_step = st.button("Next")
 
         if next_step:
-            st.markdown('<h1 style = "text-align: center;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
+            st.markdown('<h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
             option = st.selectbox(
             '',
-            ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
             if option == 'Gausian Naive Bayes':
                 st.write('gnb')
                 cek = st.button("Cek Diagnosa")
@@ -207,6 +207,8 @@ with st.container():
                 model = 'K-Nearest Neighbors'
             elif option == 'Decision Tree':
                 model = 'Decision Tree'
+            elif option == 'None':
+                st.write('Pilih Model')
 
 
 
