@@ -194,7 +194,7 @@ with st.container():
         if pilih_model == 'Gausian Naive Bayes':
             cek = st.button("Cek Diagnosa", type="primary")
             if cek:
-                st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
+                st.markdown('<h5 style = "color: black;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
@@ -211,7 +211,7 @@ with st.container():
         elif pilih_model == 'K-Nearest Neighbors':
             cek = st.button("Cek Diagnosa", type="primary")
             if cek:
-                st.markdown('<h5 style = "color: black; text-align: center;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
+                st.markdown('<h5 style = "color: black;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
                 knn = KNeighborsClassifier()
                 knn.fit(X_train, y_train)
                 prediksi = knn.predict(X_test)
@@ -228,7 +228,7 @@ with st.container():
         elif pilih_model == 'Decision Tree':
             cek = st.button("Cek Diagnosa", type="primary")
             if cek:
-                st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
+                st.markdown('<h5 style = "color: black;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
                 dt = DecisionTreeClassifier()
                 dt.fit(X_train, y_train)
                 prediksi = dt.predict(X_test)
