@@ -114,7 +114,7 @@ with st.container():
         gnb = GaussianNB()
         gnb.fit(training, training_label)
         acc_gnb = gnb.score(test, test_label)
-        st.write('**_Akurasi Gaussian :_**', acc_gnb*100, '**_%_**')
+        st.write('**_Akurasi Gaussian :_**', round(acc_gnb*100, 2), '**_%_**')
         
         st.markdown('<h2>2. K-Nearest Neighbors (K-NN)</h2><p style = "text-align: justify;"></h2><p style = "text-align: justify;">Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.', unsafe_allow_html = True)
         st.markdown('<p>Rumus :</p>', unsafe_allow_html = True)
@@ -123,7 +123,7 @@ with st.container():
         knn = KNeighborsClassifier(n_neighbors=5)
         knn.fit(training, training_label)
         acc_knn = knn.score(test, test_label)
-        st.write('**_Akurasi KNN :_**', acc_knn*100, '**_%_**')
+        st.write('**_Akurasi KNN :_**', round(acc_knn*100, 2), '**_%_**')
 
         st.markdown('<h2>3. Decision Tree<p style = "text-align: justify;"></h2><p style = "text-align: justify;">Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan.</p>', unsafe_allow_html = True)
         st.markdown('<p>Rumus Entropy:</p>', unsafe_allow_html = True)
@@ -134,7 +134,7 @@ with st.container():
         dt = DecisionTreeClassifier()
         dt.fit(training, training_label)
         acc_dt = dt.score(test, test_label)
-        st.write('**_Akurasi Decision Tree :_**', acc_dt*100, '**_%_**')
+        st.write('**_Akurasi Decision Tree :_**', round(acc_dt*100, 2), '**_%_**')
 
     elif choose == "Predict":
         # form data kesehatan
