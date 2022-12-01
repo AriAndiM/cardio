@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 from sklearn import metrics
+import pickle
 
 # import cv2
 # import pandas as pd
@@ -285,8 +286,8 @@ with st.container():
         gnb.fit(training, training_label)
         prediksi = gnb.predict(test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # loaded_model = pickle.load(open(filename, 'rb'))
-        pred = filename.predict([inputan])
+        loaded_model = pickle.load(open(filename, 'rb'))
+        pred = loaded_model.predict([inputan])
         st.write('score :', gnb.score(test, test_label))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
