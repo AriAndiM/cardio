@@ -139,8 +139,13 @@ with st.container():
         st.write('**_Akurasi Decision Tree :_**', acc_dt*100, '**_%_**')
 
     elif choose == "Predict":
-
-        st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda. </h1>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center;"> Pilih Model </h1>', unsafe_allow_html = True)
+        option = st.selectbox(
+        'Pilih Moddel',
+        ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+        
+        # form data kesehatan
+        st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda </h1>', unsafe_allow_html = True)
 
         umur = st.number_input('Umur')
         gender = st.slider('Jenis Kelamin', 1, 2, 1)
