@@ -209,7 +209,7 @@ with st.container():
                     st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'K-Nearest Neighbors':
-            cek = st.button("Cek Diagnosa")
+            cek = st.button("Cek Diagnosa", type="primary")
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 knn = KNeighborsClassifier()
@@ -226,7 +226,7 @@ with st.container():
                     st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'Decision Tree':
-            cek = st.button("Cek Diagnosa")
+            cek = st.button("Cek Diagnosa", type="primary")
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 dt = DecisionTreeClassifier()
@@ -245,62 +245,5 @@ with st.container():
         elif pilih_model == 'None':
             st.write('')
             
-
-
-
-#----------------------------------------------------------------
-#indentasi
-        # gnb = GaussianNB()
-        # filename = "GaussianNB.pkl"
-
-        # gnb.fit(X_train, y_train)
-        # prediksi = gnb.predict(X_test)
-        # inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # x_min = x.min()
-        # x_max = x.max()
-        # norm_input = ((inputan - x_min)/(x_max - x_min))
-        # norm_input = np.array(norm_input).reshape(1, -1)
-
-        # pred = gnb.predict(norm_input)
-
-        # st.write('score :', gnb.score(X_test, y_test))
-        # cek = st.button("Cek Diagnosa")
-
-        # if cek:
-        #     pred[0]
-        #     if(pred == 0):
-        #         st.caption('negatif')
-        #     elif(pred == 1):
-        #         st.caption('positif')
-#----------------------------------------------------------------
-        # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
-
-        # st.subheader('Class Label')
-        # target_names = cardio.cardio.unique()
-        # st.write(target_names)
-
-        # st.subheader('Prediksi')
-        # st.write(target_names[prediksi])
-
-        # #save model gaussian
-        # file_name_gnb = "Model Gaussian.sav"
-        # joblib.dump(gnb, file_name_gnb)
-
-
-        # st.subheader('Akurasi Gaussian')
-        # # prediksi = gnb.predict(test)
-
-
-        # #st.write('df : ', prediksi)
-        # #prediksi_probas = gnb.predict_proba(df)
-        # accuracy = metrics.accuracy_score(test_label, y_pred)*100
-        # st.write(accuracy)
-
-        # st.subheader('Prediksi (Hasil Klasifikasi)')
-        # hasil = target_names[prediksi]
-        # hasil
-
-
-
 
 
