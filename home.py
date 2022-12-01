@@ -139,11 +139,6 @@ with st.container():
         st.write('**_Akurasi Decision Tree :_**', acc_dt*100, '**_%_**')
 
     elif choose == "Predict":
-        st.markdown('<h1 style = "text-align: center;"> Pilih Model </h1>', unsafe_allow_html = True)
-        option = st.selectbox(
-        'Pilih Moddel',
-        ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
-        
         # form data kesehatan
         st.markdown('<h1 style = "text-align: center;"> Masukkan Data Kesehatan Anda </h1>', unsafe_allow_html = True)
 
@@ -175,23 +170,43 @@ with st.container():
         features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
 
-        import joblib
-        file_name_norm = "norm.sav"
-        joblib.dump(scaler, file_name_norm)
-
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
-        # X=scaled_features.iloc[:,1:11].values
-        # y=scaled_features.iloc[:,11].values
-        # X_train, X_test, y_train, y_test = train_test_split(scaled, y, test_size=0.2, shuffle = false)
         X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
-        # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,stratify=y, random_state=0)
 
+        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        x_min = x.min()
+        x_max = x.max()
+        norm_input = ((inputan - x_min)/(x_max - x_min))
+        norm_input = np.array(norm_input).reshape(1, -1)
 
+        st.markdown('<h1 style = "text-align: center;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
+        option = st.selectbox(
+        '',
+        ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+        if option == 'Gausian Naive Bayes':
+            model = 'Gaussian Naive Bayes'
+            cek = st.button("Cek Diagnosa")
+            if cek:
+                gnb = GaussianNB()
+                gnb.fit(X_train, y_train)
+                prediksi = gnb.predict(X_test)
+                pred = gnb.predict(norm_input)
+                if(pred == 0):
+                    st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
+                elif(pred == 1):
+                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+        elif option == 'K-Nearest Neighbors (K-NN)':
+            model = 'K-Nearest Neighbors'
+        elif option == 'Decision Tree':
+            model = 'Decision Tree'
+
+#----------------------------------------------------------------
+#indentasi
         gnb = GaussianNB()
         filename = "GaussianNB.pkl"
 
@@ -214,7 +229,7 @@ with st.container():
                 st.caption('negatif')
             elif(pred == 1):
                 st.caption('positif')
-
+#----------------------------------------------------------------
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
 
         # st.subheader('Class Label')
