@@ -18,7 +18,7 @@ with st.container():
             "container": {"padding": "5!important", "background-color": "10A19D"},
             "icon": {"color": "orange", "font-size": "25px"}, 
             "nav-link": {"font-size": "16px", "text-align": "left", "margin":"0px", "--hover-color": "#eee"},
-            "nav-link-selected": {"background-color": "#85BAFF"},
+            "nav-link-selected": {"background-color": "#3D5656"},
         }
         )
 
