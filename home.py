@@ -188,10 +188,11 @@ with st.container():
 
         if next_step:
             st.markdown('<h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
-            option = st.selectbox(
-            '',
-            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
-            if option == 'Gausian Naive Bayes':
+            pilih_model = st.radio(
+            "",
+            ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+
+            if pilih_model == 'Gausian Naive Bayes':
                 st.write('gnb')
                 # cek = st.button("Cek Diagnosa")
                 # if cek:
