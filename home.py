@@ -200,7 +200,7 @@ with st.container():
                 if(pred == 0):
                     st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
-                    st.markdown('Anda dinyatakan **_Negatif Cardiovascular_**', unsafe_allow_html=True)
+                    st.markdown('<p>Anda dinyatakan</p> <p>Negatif Cardiovascular<p>', unsafe_allow_html=True)
                 elif(pred == 1):
                     st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
