@@ -247,15 +247,13 @@ with st.container():
         #dataset
         cardio = pd.read_csv('cardiovascular2.csv')
 
-        #data y_training
+        # data y_training
         y = cardio['cardio'].values
-
-#         st.subheader('Load Data Cardio Terbaru')
+        # data terbaru
         x = cardio.drop(columns=['id','cardio'])
         
 
         #Normalisasi
-#         st.subheader('Normalisasi Data')
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
@@ -286,9 +284,13 @@ with st.container():
         gnb.fit(X_train, y_train)
         prediksi = gnb.predict(X_test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        inputan
-        # loaded_model = pickle.load(open(filename, 'rb'))
-        pred = gnb.predict([inputan])
+        x_min = x.min()
+        x_max = x.max()
+        norm_input = ((inputan - x_min)/(x_max - x_min))
+        norm_input = np.array(norm_input).reshape(1, -1)
+
+        pred = gnb.predict(norm_input)
+
         st.write('score :', gnb.score(X_test, y_test))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
