@@ -292,9 +292,9 @@ with st.container():
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
         pred[0]
-        if(prediksi == 0):
+        if(pred == 0):
             st.caption('negatif')
-        elif(prediksi == 1):
+        elif(pred == 1):
             st.caption('positif')
 
         # st.subheader('Skore :', gnb.accuracy_score(test, test_label))
