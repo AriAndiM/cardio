@@ -285,7 +285,7 @@ with st.container():
         gnb.fit(training, training_label)
         prediksi = gnb.predict(test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        loaded_model = pickle.load(open(filename, 'rb'))
+        # loaded_model = pickle.load(open(filename, 'rb'))
         pred = filename.predict([inputan])
         st.write('score :', gnb.score(test, test_label))
         # hasil = st.button("Cek Diagnosa")
