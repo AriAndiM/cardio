@@ -200,46 +200,57 @@ with st.container():
     elif choose == "Predict":
 
         st.header('Parameter-Inputan')
-        def input_user():
-            umur = st.number_input('Umur')
-            gender = st.slider('Jenis Kelamin', 1, 2, 1)
-            tinggi_badan = st.number_input('Tinggi Badan')
-            berat_badan = st.number_input('Berat Badan')
-            sistolik = st.number_input('Tekanan Darah Sistolik')
-            diastolik = st.number_input('Tekanan Darah Diastolik')
-            kolestrol = st.slider('Kolestrol', 1, 3, 1)
-            glukosa = st.slider('Glukosa', 1, 3, 1)
-            merokok = st.slider('Merokok', 0, 1, 0)
-            alkohol = st.slider('Alkohol', 0, 1, 0)
-            aktivitas = st.slider('Aktivitas', 0, 1, 0)
-            data = {
-                'Umur': umur,
-                'Jenis Kelamin': gender,
-                'Tinggi Badan': tinggi_badan,
-                'Berat Badan': berat_badan,
-                'Tekanan_Darah_Sistolik': sistolik,
-                'Tekanan_Darah_Diastolik': diastolik,
-                'Kolestrol': kolestrol,
-                'Glukosa': glukosa,
-                'Merokok': merokok,
-                'Alkohol': alkohol,
-                'Aktivitas': aktivitas
-            }
+        # def input_user():
+        #     umur = st.number_input('Umur')
+        #     gender = st.slider('Jenis Kelamin', 1, 2, 1)
+        #     tinggi_badan = st.number_input('Tinggi Badan')
+        #     berat_badan = st.number_input('Berat Badan')
+        #     sistolik = st.number_input('Tekanan Darah Sistolik')
+        #     diastolik = st.number_input('Tekanan Darah Diastolik')
+        #     kolestrol = st.slider('Kolestrol', 1, 3, 1)
+        #     glukosa = st.slider('Glukosa', 1, 3, 1)
+        #     merokok = st.slider('Merokok', 0, 1, 0)
+        #     alkohol = st.slider('Alkohol', 0, 1, 0)
+        #     aktivitas = st.slider('Aktivitas', 0, 1, 0)
+        #     data = {
+        #         'Umur': umur,
+        #         'Jenis Kelamin': gender,
+        #         'Tinggi Badan': tinggi_badan,
+        #         'Berat Badan': berat_badan,
+        #         'Tekanan_Darah_Sistolik': sistolik,
+        #         'Tekanan_Darah_Diastolik': diastolik,
+        #         'Kolestrol': kolestrol,
+        #         'Glukosa': glukosa,
+        #         'Merokok': merokok,
+        #         'Alkohol': alkohol,
+        #         'Aktivitas': aktivitas
+        #     }
 
-            fitur = pd.DataFrame(data, index=[0])
-            return fitur
+        #     fitur = pd.DataFrame(data, index=[0])
+        #     return fitur
 
-        #inputan
-        df = input_user()
+        # #inputan
+        # df = input_user()
 
+        umur = st.number_input('Umur')
+        gender = st.slider('Jenis Kelamin', 1, 2, 1)
+        tinggi_badan = st.number_input('Tinggi Badan')
+        berat_badan = st.number_input('Berat Badan')
+        sistolik = st.number_input('Tekanan Darah Sistolik')
+        diastolik = st.number_input('Tekanan Darah Diastolik')
+        kolestrol = st.slider('Kolestrol', 1, 3, 1)
+        glukosa = st.slider('Glukosa', 1, 3, 1)
+        merokok = st.slider('Merokok', 0, 1, 0)
+        alkohol = st.slider('Alkohol', 0, 1, 0)
+        aktivitas = st.slider('Aktivitas', 0, 1, 0)
         #dataset
         cardio = pd.read_csv('cardiovascular.csv')
 
         #data y_training
-        y = cardio['cardio'].values
+        label = cardio['cardio'].values
 
 #         st.subheader('Load Data Cardio Terbaru')
-        x = cardio.drop(columns=['id','cardio'])
+        data_drop = cardio.drop(columns=['id','cardio'])
         
 
         #Normalisasi
@@ -247,8 +258,8 @@ with st.container():
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x)
-        features_names = x.columns.copy()
+        scaled = scaler.fit_transform(data_drop)
+        features_names = data_drop.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
 
         import joblib
@@ -260,14 +271,26 @@ with st.container():
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        X=scaled_features.iloc[:,1:11].values
+        y=scaled_features.iloc[:,11].values
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=0)
+        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,stratify=y, random_state=0)
+
 
         gnb = GaussianNB()
-        gnb.fit(training, training_label)
-        prediksi = gnb.predict(df)
-        prediksi_probas = gnb.predict_proba(df)
-        prediksi[0]
+        filename = "GaussianNB.pkl"
+
+        gnb.fit(X_train, y_train)
+        prediksi = gnb.predict(X_test)
+        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        loaded_model = pickle.load(open(filename, 'rb'))
+        pred = loaded_model.predict([inputan])
+        st.write('score :', gnb.score(X_test, y_test))
+        # hasil = st.button("Cek Diagnosa")
+        #prediksi_probas = gnb.predict_proba(df)
+        pred[0]
         if(prediksi == 0):
             st.caption('negatif')
         elif(prediksi == 1):
