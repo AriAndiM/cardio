@@ -192,17 +192,17 @@ with st.container():
             '',
             ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
             if option == 'Gausian Naive Bayes':
-                model = 'Gaussian Naive Bayes'
+                st.write('gnb')
                 cek = st.button("Cek Diagnosa")
-                if cek:
-                    gnb = GaussianNB()
-                    gnb.fit(X_train, y_train)
-                    prediksi = gnb.predict(X_test)
-                    pred = gnb.predict(norm_input)
-                    if(pred == 0):
-                        st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
-                    elif(pred == 1):
-                        st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+                # if cek:
+                #     gnb = GaussianNB()
+                #     gnb.fit(X_train, y_train)
+                #     prediksi = gnb.predict(X_test)
+                #     pred = gnb.predict(norm_input)
+                #     if(pred == 0):
+                #         st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
+                #     elif(pred == 1):
+                #         st.caption('Anda dinyatakan **_positif_** Cardiovascular')
             elif option == 'K-Nearest Neighbors (K-NN)':
                 model = 'K-Nearest Neighbors'
             elif option == 'Decision Tree':
