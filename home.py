@@ -95,7 +95,7 @@ with st.container():
         training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
         st.markdown('<h1 style = "text-align: center;">Modelling</h1>', unsafe_allow_html = True)
-        st.markdown('<ol type = "1" style = "text-align: center;"><h2><li>Naive Bayes</li></h2>Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian. </ol>', unsafe_allow_html = True)
+        st.markdown('<ol type = "1"><h2><li>Naive Bayes</li></h2><p style = "text-align: center;">Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian.</p> </ol>', unsafe_allow_html = True)
 
         st.caption("Rumus :")
         st.latex(r'''P(C_{k}|x) = \frac{P(C_{k})P(x|C_{k})}{P(x)}''')
