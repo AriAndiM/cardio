@@ -159,6 +159,9 @@ with st.container():
 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
+        from sklearn.neighbors import KNeighborsClassifier
+        from sklearn import tree
+        from sklearn.tree import DecisionTreeClassifier
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
@@ -185,11 +188,10 @@ with st.container():
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
-            "",
-            ('Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
+            "Pilih Model",
+            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
 
         if pilih_model == 'Gausian Naive Bayes':
-            st.write('gnb')
             cek = st.button("Cek Diagnosa")
             if cek:
                 gnb = GaussianNB()
@@ -197,20 +199,48 @@ with st.container():
                 prediksi = gnb.predict(X_test)
                 pred = gnb.predict(norm_input)
                 if(pred == 0):
-                    st.caption('Anda dinyatakan **_negatif_** Cardiovascular')
+                    st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
+                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
                 elif(pred == 1):
+                    st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+
         elif option == 'K-Nearest Neighbors (K-NN)':
-            model = 'K-Nearest Neighbors'
+            cek = st.button("Cek Diagnosa")
+            if cek:
+                knn = KNeighborsClassifier()
+                knn.fit(X_train, y_train)
+                prediksi = knn.predict(X_test)
+                pred = knn.predict(norm_input)
+                if(pred == 0):
+                    st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(knn.score(X_test, y_test), 2), '%')
+                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
+                elif(pred == 1):
+                    st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(knn.score(X_test, y_test), 2), '%')
+                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+
         elif option == 'Decision Tree':
-            model = 'Decision Tree'
+            cek = st.button("Cek Diagnosa")
+            if cek:
+                dt = DecisionTreeClassifier()
+                dt.fit(X_train, y_train)
+                prediksi = dt.predict(X_test)
+                pred = dt.predict(norm_input)
+                if(pred == 0):
+                    st.markdown('Dengan diagnosa model **_Decision Tree_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(dt.score(X_test, y_test), 2), '%')
+                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
+                elif(pred == 1):
+                    st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
+                    st.write('Akurasi : ',round(dt.score(X_test, y_test), 2), '%')
+                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+
         elif option == 'None':
             st.write('Pilih Model')
-
-        next_step = st.button("Next")
-
-        if next_step:
-            st.markdown('<h3 style = "text-align: center;">Pilih Model</h3>', unsafe_allow_html = True)
             
 
 
