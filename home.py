@@ -239,7 +239,8 @@ with st.container():
                 elif(pred == 1):
                     st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
-                    st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
+                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary" )
+                    # st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
 
         elif pilih_model == 'None':
             st.write('')
