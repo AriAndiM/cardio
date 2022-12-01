@@ -288,7 +288,7 @@ with st.container():
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
         # loaded_model = pickle.load(open(filename, 'rb'))
         pred = gnb.predict(inputan)
-        st.write('score :', gnb.score(test, test_label))
+        st.write('score :', gnb.score(X_test, y_test))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
         pred[0]
