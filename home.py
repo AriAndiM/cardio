@@ -31,7 +31,7 @@ with st.container():
     elif choose == "Deskripsi Data":
         st.markdown('<h1 style = "text-align: center;"> Deskripsi Data </h1>', unsafe_allow_html = True)
         st.markdown('<h2>Ada 3 jenis fitur input :</h2>', unsafe_allow_html = True)
-        st.markdown('<ol type = "a"><li>Objektif : factual information;</li><li>Penelitian / penyelidikan : hasil pemeriksaan medis;</li><li>Subjektif : informasi yang diberikan oleh pasien.</li></ol>')
+        st.markdown('<ol type = "a"><li>Objektif : factual information;</li><li>Penelitian / penyelidikan : hasil pemeriksaan medis;</li><li>Subjektif : informasi yang diberikan oleh pasien.</li></ol>', unsafe_allow_html = True)
 
         st.subheader('Fitur Dataset:')
         st.caption("1. Age merupakan umur dari pasien yang diukur dalam satuan hari dengan tipe data int")
