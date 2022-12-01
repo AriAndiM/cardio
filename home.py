@@ -274,7 +274,7 @@ with st.container():
 
         # X=scaled_features.iloc[:,1:11].values
         # y=scaled_features.iloc[:,11].values
-        X_train, X_test, y_train, y_test = train_test_split(scaled, y, test_size=0.3, stratify=y, random_state=0)
+        X_train, X_test, y_train, y_test = train_test_split(scaled, y, test_size=0.2, stratify=y, random_state=0)
         # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,stratify=y, random_state=0)
