@@ -24,26 +24,26 @@ with st.container():
 
     if choose == "Home":
         st.title('Cardiovascular Disease')
-        st.write('Penyakit kardiovaskular (CVD) adalah istilah bagi serangkaian gangguan yang menyerang jantung dan pembuluh darah, termasuk penyakit jantung koroner (CHD), penyakit serebrovaskular, hipertensi (tekanan darah tinggi), dan penyakit vaskular perifer (PVD). Penyebab penyakit kardiovaskular paling umum adalah aterosklerosis atau penumpukan lemak di dinding bagian dalam pembuluh darah yang mengalir ke jantung atau otak. Kondisi ini menyebabkan pembuluh darah tersumbat atau pecah.')
+        st.markdown('<div style ="text-align: center">Penyakit kardiovaskular (CVD) adalah istilah bagi serangkaian gangguan yang menyerang jantung dan pembuluh darah, termasuk penyakit jantung koroner (CHD), penyakit serebrovaskular, hipertensi (tekanan darah tinggi), dan penyakit vaskular perifer (PVD). Penyebab penyakit kardiovaskular paling umum adalah aterosklerosis atau penumpukan lemak di dinding bagian dalam pembuluh darah yang mengalir ke jantung atau otak. Kondisi ini menyebabkan pembuluh darah tersumbat atau pecah.</div>')
         logo = Image.open('jantung.png')
         st.image(logo, caption='')
 
     elif choose == "Deskripsi Data":
         st.title('Deskripsi Data')
-        st.subheader('There are 3 types of input features:')
-        st.caption("a. Objective: factual information;")
-        st.caption("b. Examination: results of medical examination;")
-        st.caption("c. Subjective: information given by the patient.")
+        st.subheader('Ada 3 jenis fitur input :')
+        st.caption("a. Objektif : factual information;")
+        st.caption("b. Penelitian / penyelidikan : hasil pemeriksaan medis;")
+        st.caption("c. Subjektif : informasi yang diberikan oleh pasien.")
 
-        st.subheader('Features:')
+        st.subheader('Fitur Dataset:')
         st.caption("1. Age merupakan umur dari pasien yang diukur dalam satuan hari dengan tipe data int")
         st.caption("2. Height merupakan tinggi badan dari pasien dalam satuan cm yang diukur menggunakan alat stature meter dengan tipe data integer")
         st.caption("3. Weight merupakan berat badan dari pasien dalam satuan kg yang diukur menggunakan alat timbangan injak dengan tipe data float")
         st.caption("4. Gender merupakan jenis kelamin dari pasien. Jenis kelamin bertipe biner yaitu perempuan dan laki-laki")
-        st.caption("5. Systolic blood pressure merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter")
-        st.caption("6. Diastolic blood pressure merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter.")
-        st.caption("7. Cholesterol merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL)")
-        st.caption("8. Glucose merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. | Examination Feature | gluc | 1: normal, 2: above normal, 3: well above normal |")
+        st.caption("5. Systolic blood pressure (tekanan darah sistolik) merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter")
+        st.caption("6. Diastolic blood pressure (tekanan darah diastolik) merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter.")
+        st.caption("7. Cholesterol (kolesterol) merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL)")
+        st.caption("8. Glucose (glukosa) merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. Kadar glukosa dapat diukur di laboratorium atau dengan alat glukometer. 1 : Glukosa normal kadarnya sekitar 100 - 160 mg/dL, 2 : Glukosa diatas normal kadarnya sekitar 160 - 240 mg/dL, 3 : Glukosa jauh diatas normal kadarnya di atas 240 mg/dL.")
         st.caption("9. Smoking merupakan kondisi pasien sedang merokok atau tidak")
         st.caption("10. Alcohol intake merupakan kondisi pasien apakah mengkonsumsi alkohol atau tidak.")
         st.caption("11. Physical activity merupakan kondisi pasien apakah aktif berolahraga atau tidak.")
@@ -55,7 +55,7 @@ with st.container():
         cardio
 
     elif choose == "Preprocessing":
-        st.header("Preprocessing")
+        st.title("Preprocessing")
         st.caption("**_Preprocessing_** adalah sebuah pengolahan data mentah sebelum data tersebut di proses.")
         st.subheader("Normalisasi")
         st.caption("**_Normalisasi_** adalah proses untuk melakukan transformasi dari format data asli menjadi format yang lebih efisien. Contohnya seperti mengubah data asli menjadi data yang bernilai antara 0 - 1. Berikut normalisasi menggunakan MinMax. Rumus MinMax :")
@@ -129,8 +129,7 @@ with st.container():
         gnb = GaussianNB()
         gnb.fit(training, training_label)
         acc_gnb = gnb.score(test, test_label)
-        akurasi_gnb = st.caption("**Akurasi Gaussian : **", acc_gnb*100, "**%**")
-        st.write(akurasi_gnb)
+        st.write('**_Akurasi Gaussian :_**', acc_gnb*100, '**_%_**')
         
         st.subheader("2. K-Nearest Neighbors (K-NN)")
         st.caption("Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.")
@@ -140,7 +139,7 @@ with st.container():
         knn = KNeighborsClassifier(n_neighbors=5)
         knn.fit(training, training_label)
         acc_knn = knn.score(test, test_label)
-        st.write('Akurasi KNN : ', acc_knn*100, '%')
+        st.write('**_Akurasi KNN :_**', acc_knn*100, '**_%_**')
 
         st.subheader("3. Decision Tree")
         st.caption("Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan. ")
@@ -152,7 +151,7 @@ with st.container():
         dt = DecisionTreeClassifier()
         dt.fit(training, training_label)
         acc_dt = dt.score(test, test_label)
-        st.write('Akurasi Decision Tree : ', acc_dt*100, '%')
+        st.write('**_Akurasi Decision Tree :_**', acc_dt*100, '**_%_**')
 
     elif choose == "Predict":
 
