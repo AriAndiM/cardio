@@ -244,10 +244,10 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
         #dataset
-        cardio = pd.read_csv('cardiovascular.csv')
+        x = pd.read_csv('cardiovascular.csv')
 
         #data y_training
-        label = cardio['cardio'].values
+        y = cardio['cardio'].values
 
 #         st.subheader('Load Data Cardio Terbaru')
         data_drop = cardio.drop(columns=['id','cardio'])
@@ -258,8 +258,8 @@ with st.container():
         from sklearn.preprocessing import MinMaxScaler
 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(data_drop)
-        features_names = data_drop.columns.copy()
+        scaled = scaler.fit_transform(x)
+        features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
 
         import joblib
@@ -271,23 +271,23 @@ with st.container():
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
-        X=scaled_features.iloc[:,1:11].values
-        y=scaled_features.iloc[:,11].values
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=0)
-        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # X=scaled_features.iloc[:,1:11].values
+        # y=scaled_features.iloc[:,11].values
+        # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=0)
+        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,stratify=y, random_state=0)
 
 
         gnb = GaussianNB()
         filename = "GaussianNB.pkl"
 
-        gnb.fit(X_train, y_train)
-        prediksi = gnb.predict(X_test)
+        gnb.fit(training, training_label)
+        prediksi = gnb.predict(test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
         loaded_model = pickle.load(open(filename, 'rb'))
         pred = loaded_model.predict([inputan])
-        st.write('score :', gnb.score(X_test, y_test))
+        st.write('score :', gnb.score(test, test_label))
         # hasil = st.button("Cek Diagnosa")
         #prediksi_probas = gnb.predict_proba(df)
         pred[0]
