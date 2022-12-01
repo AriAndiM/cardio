@@ -193,7 +193,7 @@ with st.container():
             ('None','Gausian Naive Bayes', 'K-Nearest Neighbors (K-NN)', 'Decision Tree'))
             if option == 'Gausian Naive Bayes':
                 st.write('gnb')
-                cek = st.button("Cek Diagnosa")
+                # cek = st.button("Cek Diagnosa")
                 # if cek:
                 #     gnb = GaussianNB()
                 #     gnb.fit(X_train, y_train)
