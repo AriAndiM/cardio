@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 import pandas as pd
 from sklearn import metrics
-# import pickle
+import pickle
 
 # import cv2
 # import pandas as pd
@@ -272,11 +272,11 @@ with st.container():
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
-        # X=scaled_features.iloc[:,1:11].values
-        # y=scaled_features.iloc[:,11].values
-        # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=0)
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        X=scaled_features.iloc[:,1:11].values
+        y=scaled_features.iloc[:,11].values
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=0)
+        # training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        # training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,stratify=y, random_state=0)
 
 
@@ -284,9 +284,9 @@ with st.container():
         filename = "GaussianNB.pkl"
 
         gnb.fit(training, training_label)
-        prediksi = gnb.predict(test)
+        prediksi = gnb.predict(X_test)
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # loaded_model = pickle.load(open(filename, 'rb'))
+        loaded_model = pickle.load(open(filename, 'rb'))
         pred = gnb.predict([inputan])
         st.write('score :', gnb.score(test, test_label))
         # hasil = st.button("Cek Diagnosa")
