@@ -207,7 +207,7 @@ with st.container():
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
 
-        elif option == 'K-Nearest Neighbors':
+        elif pilih_model == 'K-Nearest Neighbors':
             cek = st.button("Cek Diagnosa")
             if cek:
                 knn = KNeighborsClassifier()
@@ -223,7 +223,7 @@ with st.container():
                     st.write('Akurasi : ',round(knn.score(X_test, y_test), 2), '%')
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
 
-        elif option == 'Decision Tree':
+        elif pilih_model == 'Decision Tree':
             cek = st.button("Cek Diagnosa")
             if cek:
                 dt = DecisionTreeClassifier()
@@ -239,7 +239,7 @@ with st.container():
                     st.write('Akurasi : ',round(dt.score(X_test, y_test), 2), '%')
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
 
-        elif option == 'None':
+        elif pilih_model == 'None':
             st.write('Pilih Model')
             
 
