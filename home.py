@@ -192,7 +192,7 @@ with st.container():
             ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
 
         if pilih_model == 'Gausian Naive Bayes':
-            cek = st.button("Cek Diagnosa")
+            cek = st.button("Cek Diagnosa" type="primary")
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 gnb = GaussianNB()
@@ -226,7 +226,7 @@ with st.container():
                     st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'Decision Tree':
-            cek = st.markdown('<div style = "text-align: center;">st.button("Cek Diagnosa")</div>', unsafe_allow_html = True)
+            cek = st.button("Cek Diagnosa")
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 dt = DecisionTreeClassifier()
