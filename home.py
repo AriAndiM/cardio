@@ -36,7 +36,7 @@ with st.container():
 
     elif choose == "Dataset":
         st.markdown('<h1 style = "text-align: center;"> Dataset Cardiovascular </h1>', unsafe_allow_html = True)
-        cardio = pd.read_csv('cardiovascular.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
         cardio
 
     elif choose == "Preprocessing":
