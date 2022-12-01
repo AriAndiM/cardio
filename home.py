@@ -201,12 +201,12 @@ with st.container():
                 pred = gnb.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
-                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
+                    st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
+                    st.markdown('Anda dinyatakan **_Negatif Cardiovascular_**', unsafe_allow_html=True)
                 elif(pred == 1):
                     st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(gnb.score(X_test, y_test), 2), '%')
-                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+                    st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
+                    st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'K-Nearest Neighbors':
             cek = st.button("Cek Diagnosa")
@@ -218,15 +218,15 @@ with st.container():
                 pred = knn.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(knn.score(X_test, y_test), 2), '%')
-                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
+                    st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
+                    st.markdown('Anda dinyatakan **_Negatif Cardiovascular_**', unsafe_allow_html=True)
                 elif(pred == 1):
                     st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(knn.score(X_test, y_test), 2), '%')
-                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+                    st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
+                    st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'Decision Tree':
-            cek = st.button("Cek Diagnosa")
+            cek = st.markdown('<div style = "text-align: center;">st.button("Cek Diagnosa")</div>', unsafe_allow_html = True)
             if cek:
                 st.markdown('<h5 style = "color: orange; text-align: center;"> Hasil Diagnosa </h5>', unsafe_allow_html = True)
                 dt = DecisionTreeClassifier()
@@ -235,12 +235,12 @@ with st.container():
                 pred = dt.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Dengan diagnosa model **_Decision Tree_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(dt.score(X_test, y_test), 2), '%')
-                    st.markdown('Anda dinyatakan **_negatif Cardiovascular_**', unsafe_allow_html=True)
+                    st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
+                    st.markdown('Anda dinyatakan **_Negatif Cardiovascular_**', unsafe_allow_html=True)
                 elif(pred == 1):
                     st.markdown('Dengan diagnosa model **_K-Nearest Neighhbors_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(dt.score(X_test, y_test), 2), '%')
-                    st.caption('Anda dinyatakan **_positif_** Cardiovascular')
+                    st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
+                    st.caption('Anda dinyatakan **_Positif_** Cardiovascular')
 
         elif pilih_model == 'None':
             st.write('')
