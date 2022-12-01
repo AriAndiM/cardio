@@ -198,11 +198,11 @@ with st.container():
                 prediksi = gnb.predict(X_test)
                 pred = gnb.predict(norm_input)
                 if(pred == 0):
-                    st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: blue">Anda dinyatakan <i><b>Negatif Cardiovascular</b></i><p>', unsafe_allow_html=True)
                 elif(pred == 1):
-                    st.markdown('Dengan diagnosa model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
 
@@ -215,12 +215,12 @@ with st.container():
                 prediksi = knn.predict(X_test)
                 pred = knn.predict(norm_input)
                 if(pred == 0):
-                    st.markdown('Dengan diagnosa model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: blue">Anda dinyatakan <i><b>Negatif Cardiovascular</b></i><p>', unsafe_allow_html=True)
 
                 elif(pred == 1):
-                    st.markdown('Dengan diagnosa model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
 
@@ -233,11 +233,11 @@ with st.container():
                 prediksi = dt.predict(X_test)
                 pred = dt.predict(norm_input)
                 if(pred == 0):
-                    st.markdown('Dengan diagnosa model **_Decision Tree**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: blue">Anda dinyatakan <i><b>Negatif Cardiovascular</b></i><p>', unsafe_allow_html=True)
                 elif(pred == 1):
-                    st.markdown('Dengan diagnosa model **_Decision Tree**', unsafe_allow_html = True)
+                    st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
                     st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
 
