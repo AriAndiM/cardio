@@ -170,7 +170,7 @@ with st.container():
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
 
         umur = st.number_input('Umur')
-        gender = st.slider('Jenis Kelamin', 1, 2, 1)
+        gender = st.slider('Jenis Kelamin', 1, 2, 1, color = "orange")
         tinggi_badan = st.number_input('Tinggi Badan')
         berat_badan = st.number_input('Berat Badan')
         sistolik = st.number_input('Tekanan Darah Sistolik')
