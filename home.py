@@ -243,7 +243,7 @@ with st.container():
                     st.caption('Anda dinyatakan **_positif_** Cardiovascular')
 
         elif pilih_model == 'None':
-            st.write('Pilih Model')
+            st.write('')
             
 
 
