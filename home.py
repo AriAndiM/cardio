@@ -199,7 +199,9 @@ with st.container():
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
-        #inputan = np.concatenate((norm_input, inputan_biner))
+        
+        join = np.concatenate((norm_input, inputan_biner))
+        join
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
