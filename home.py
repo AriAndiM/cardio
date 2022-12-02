@@ -195,6 +195,7 @@ with st.container():
         inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
         inputan_num
         inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_biner
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
