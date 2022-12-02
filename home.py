@@ -222,10 +222,10 @@ with st.container():
         elif aktivitas == 'Iya':
             aktivitas = 1
     
-        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
+        #inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_num = [umur*365, gender, tinggi_badan, berat_badan, sistolik, diastolik]
         # # inputan_num
-        # inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
         # inputan_biner
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
