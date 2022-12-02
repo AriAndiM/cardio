@@ -190,7 +190,7 @@ with st.container():
         inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
-        norm_input = ((inputan_norm - data_norm_min)/(data_norm_max - data_norm_min))
+        norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
