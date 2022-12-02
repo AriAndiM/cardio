@@ -187,11 +187,14 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
-        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
+        inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
         x_min = x.min()
         x_max = x.max()
-        norm_input = ((inputan[:5] - x_min)/(x_max - x_min))
-        norm_input = np.array(norm_input).reshape(1, -1)
+        norm_input_num = ((inputan_num - x_min)/(x_max - x_min))
+        inputan = np.concatenate((norm_input_num, inputan_biner))
+        inputan = np.array(inputan).reshape(1, -1)
+        inputan
 
         pilih_model = st.radio(
             "Pilih Model",
