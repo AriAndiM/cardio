@@ -63,6 +63,7 @@ with st.container():
         features_names = x_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         x_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']] 
+        scaled_features
         
     elif choose == "Modelling":
         #dataset
