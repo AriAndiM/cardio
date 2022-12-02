@@ -191,7 +191,7 @@ with st.container():
         inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
-        norm_input_num = ((inputan_num - x_min)/(x_max - x_min))
+        norm_input_num = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         inputan = np.concatenate((norm_input_num, inputan_biner))
         inputan = np.array(inputan).reshape(1, -1)
         inputan
