@@ -53,6 +53,7 @@ with st.container():
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
         x
+        #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         #Normalisasi
         st.markdown('<h2 style = "text-align: center;">Normalisasi Data Menggunakan MinMax</h2>', unsafe_allow_html = True)
@@ -72,6 +73,8 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
+        x
+        #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
         data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
@@ -80,6 +83,23 @@ with st.container():
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         result_norm = pd.concat([scaled_features, data_biner], axis=1)
+        # result_norm
+
+        # #dataset
+        # cardio = pd.read_csv('cardiovascular2.csv')
+
+        # #data y_training
+        # y = cardio['cardio'].values
+        # #drop fitur id dan cardio
+        # x = cardio.drop(columns=['id','cardio'])
+        
+        # #Normalisasi
+        # from sklearn.preprocessing import MinMaxScaler
+
+        # scaler = MinMaxScaler()
+        # scaled = scaler.fit_transform(x)
+        # features_names = x.columns.copy()
+        # scaled_features = pd.DataFrame(scaled, columns = features_names)
                 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
@@ -151,17 +171,10 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(data_norm)
-        features_names = data_norm.columns.copy()
+        scaled = scaler.fit_transform(x)
+        features_names = x.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        result_norm = pd.concat([scaled_features, data_biner], axis=1)
-        # scaler = MinMaxScaler()
-        # scaled = scaler.fit_transform(x)
-        # features_names = x.columns.copy()
-        # scaled_features = pd.DataFrame(scaled, columns = features_names)
 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
@@ -187,14 +200,11 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
-        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
-        inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
-        data_norm_min = data_norm.min()
-        data_norm_max = data_norm.max()
-        norm_input_num = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
-        inputan = np.concatenate((norm_input_num, inputan_biner))
-        inputan = np.array(inputan).reshape(1, -1)
-        inputan
+        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        x_min = x.min()
+        x_max = x.max()
+        norm_input = ((inputan - x_min)/(x_max - x_min))
+        norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
             "Pilih Model",
@@ -207,7 +217,7 @@ with st.container():
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
-                pred = gnb.predict(inputan)
+                pred = gnb.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
