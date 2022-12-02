@@ -186,8 +186,8 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
-        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
-        inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
+        inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
