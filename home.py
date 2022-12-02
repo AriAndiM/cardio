@@ -206,7 +206,7 @@ with st.container():
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
-                pred = gnb.predict(array_inputan)
+                pred = gnb.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
