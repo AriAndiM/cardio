@@ -175,7 +175,13 @@ with st.container():
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
 
         umur = st.number_input('Umur')
-        gender = st.slider('Jenis Kelamin', 'Laki-laki', 'perempuan', 'laki-laki')
+        #gender = st.slider('Jenis Kelamin', 1, 2, 1)
+        #option = st.selectbox('Jenis Kelamin',('Laki-laki', 'Perempuan'))
+        gender = st.option('Jenis Kelamin', ('Laki-laki','Perempuan' ))
+        if gender == 'Laki-laki':
+            gender = 1
+        elif gender == 'Perempuan':
+            gender = 2
         tinggi_badan = st.number_input('Tinggi Badan')
         berat_badan = st.number_input('Berat Badan')
         sistolik = st.number_input('Tekanan Darah Sistolik')
@@ -187,6 +193,7 @@ with st.container():
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
         inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
+        inputan_num
         inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
