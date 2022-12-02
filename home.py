@@ -190,7 +190,7 @@ with st.container():
         inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
         x_min = x.min()
         x_max = x.max()
-        norm_input = ((inputan - x_min)/(x_max - x_min))
+        norm_input = ((inputan[:5] - x_min)/(x_max - x_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
