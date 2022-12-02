@@ -52,14 +52,15 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
-        x
+        x_norm = x['age','gender','height','weight','ap_hi','ap_lo']
+        x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         #Normalisasi
         st.markdown('<h2 style = "text-align: center;">Normalisasi Data Menggunakan MinMax</h2>', unsafe_allow_html = True)
 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x)
-        features_names = x.columns.copy()
+        scaled = scaler.fit_transform(x_norm)
+        features_names = x_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         scaled_features
         
