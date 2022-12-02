@@ -154,8 +154,8 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
-        data_norm = cardio[['age','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
+        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo','cholesterol','gluc','smoke','alco','active']]
+        #data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
@@ -222,9 +222,10 @@ with st.container():
         elif aktivitas == 'Iya':
             aktivitas = 1
     
-        inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
-        # inputan_num
-        inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
+        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
+        # inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
+        # # inputan_num
+        # inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
         # inputan_biner
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
