@@ -192,6 +192,7 @@ with st.container():
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         norm_input = np.array(norm_input).reshape(1, -1)
+        norm_input
 
         pilih_model = st.radio(
             "Pilih Model",
