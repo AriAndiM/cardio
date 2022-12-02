@@ -83,23 +83,6 @@ with st.container():
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         result_norm = pd.concat([scaled_features, data_biner], axis=1)
-        # result_norm
-
-        # #dataset
-        # cardio = pd.read_csv('cardiovascular2.csv')
-
-        # #data y_training
-        # y = cardio['cardio'].values
-        # #drop fitur id dan cardio
-        # x = cardio.drop(columns=['id','cardio'])
-        
-        # #Normalisasi
-        # from sklearn.preprocessing import MinMaxScaler
-
-        # scaler = MinMaxScaler()
-        # scaled = scaler.fit_transform(x)
-        # features_names = x.columns.copy()
-        # scaled_features = pd.DataFrame(scaled, columns = features_names)
                 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
@@ -171,11 +154,14 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
+        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
+        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x)
-        features_names = x.columns.copy()
+        scaled = scaler.fit_transform(data_norm)
+        features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-
+        result_norm = pd.concat([scaled_features, data_biner], axis=1)
+        
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
         from sklearn.neighbors import KNeighborsClassifier
