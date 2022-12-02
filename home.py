@@ -154,8 +154,8 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
+        data_norm = cardio[['age','height','weight','ap_hi','ap_lo']]
+        data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
@@ -192,7 +192,7 @@ with st.container():
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         #inputan = np.concatenate((norm_input, inputan_biner))
-        inputan = np.array(norm_input).reshape(1, -1)
+        norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
             "Pilih Model",
@@ -205,7 +205,7 @@ with st.container():
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
-                pred = gnb.predict(inputan)
+                pred = gnb.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
