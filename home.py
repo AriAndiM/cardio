@@ -63,7 +63,8 @@ with st.container():
         features_names = x_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
-        pd.concat([scaled_features, biner], axis=1)
+        result_norm = pd.concat([scaled_features, biner], axis=1)
+        result_norm
         
     elif choose == "Modelling":
         #dataset
