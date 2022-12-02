@@ -161,7 +161,7 @@ with st.container():
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         result_norm = pd.concat([scaled_features, data_biner], axis=1)
-        
+
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
         from sklearn.neighbors import KNeighborsClassifier
@@ -186,10 +186,11 @@ with st.container():
         alkohol = st.slider('Alkohol', 0, 1, 0)
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
-        inputan = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        x_min = x.min()
-        x_max = x.max()
-        norm_input = ((inputan - x_min)/(x_max - x_min))
+        inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
+        inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
+        data_num_min = data_num.min()
+        data_num_max = data_num.max()
+        norm_input = ((inputan_num - data_num_min)/(data_num_max - data_num_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
