@@ -52,7 +52,7 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
-        x_norm = x['age','gender','height','weight','ap_hi','ap_lo']
+        x_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
         # x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         #Normalisasi
