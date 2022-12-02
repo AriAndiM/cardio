@@ -68,21 +68,38 @@ with st.container():
         result_norm
         
     elif choose == "Modelling":
-        #dataset
-        cardio = pd.read_csv('cardiovascular2.csv')
 
+        cardio = pd.read_csv('cardiovascular2.csv')
         #data y_training
         y = cardio['cardio'].values
-        #drop fitur id dan cardio
         x = cardio.drop(columns=['id','cardio'])
-        
-        #Normalisasi
-        from sklearn.preprocessing import MinMaxScaler
+        x
+        #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
+        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
+        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x)
-        features_names = x.columns.copy()
+        scaled = scaler.fit_transform(data_norm)
+        features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
+        result_norm = pd.concat([scaled_features, data_biner], axis=1)
+        # result_norm
+
+        # #dataset
+        # cardio = pd.read_csv('cardiovascular2.csv')
+
+        # #data y_training
+        # y = cardio['cardio'].values
+        # #drop fitur id dan cardio
+        # x = cardio.drop(columns=['id','cardio'])
+        
+        # #Normalisasi
+        # from sklearn.preprocessing import MinMaxScaler
+
+        # scaler = MinMaxScaler()
+        # scaled = scaler.fit_transform(x)
+        # features_names = x.columns.copy()
+        # scaled_features = pd.DataFrame(scaled, columns = features_names)
                 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
@@ -95,8 +112,8 @@ with st.container():
         from sklearn.tree import DecisionTreeClassifier
         
         #Splitting Data
-        training, test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
-        training_label, test_label = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
+        X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
+        y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
         st.markdown('<h1 style = "text-align: center;">Modelling</h1>', unsafe_allow_html = True)
         st.markdown('<h2>1. Naive Bayes</h2><p style = "text-align: justify;">Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian.</p>', unsafe_allow_html = True)
@@ -116,8 +133,8 @@ with st.container():
         st.markdown('<p style = "text-align: justify;">Distribusi Gaussian adalah asumsi pendistribusian nilai kontinu yang terkait dengan setiap fitur berisi nilai numerik. Ketika diplot, akan muncul kurva berbentuk lonceng yang simetris tentang rata-rata nilai fitur.</p>', unsafe_allow_html = True)
         
         gnb = GaussianNB()
-        gnb.fit(training, training_label)
-        acc_gnb = gnb.score(test, test_label)
+        gnb.fit(X_train, y_train)
+        acc_gnb = gnb.score(X_test, y_test)
         st.write('**_Akurasi Gaussian :_**', round(acc_gnb*100, 2), '**_%_**')
         
         st.markdown('<h2>2. K-Nearest Neighbors (K-NN)</h2><p style = "text-align: justify;"></h2><p style = "text-align: justify;">Algoritma K-Nearest Neighbor (KNN) adalah sebuah metode klasifikasi terhadap sekumpulan data berdasarkan pembelajaran data yang sudah terklasifikasikan sebelumya. Termasuk dalam supervised learning, dimana hasil query instance yang baru diklasifikasikan berdasarkan mayoritas kedekatan jarak dari kategori yang ada dalam K-NN. Tujuan dari algoritma ini adalah untuk mengklasifikasikan obyek baru berdasarkan atribut dan sample-sample dari training data.', unsafe_allow_html = True)
@@ -125,8 +142,8 @@ with st.container():
         st.latex(r'''d(x,y) = \sqrt{\sum_{i=1}^{n}(x-y)^{2}}''')
         
         knn = KNeighborsClassifier(n_neighbors=5)
-        knn.fit(training, training_label)
-        acc_knn = knn.score(test, test_label)
+        knn.fit(X_train, y_train)
+        acc_knn = knn.score(X_test, y_test)
         st.write('**_Akurasi KNN :_**', round(acc_knn*100, 2), '**_%_**')
 
         st.markdown('<h2>3. Decision Tree<p style = "text-align: justify;"></h2><p style = "text-align: justify;">Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan.</p>', unsafe_allow_html = True)
@@ -136,8 +153,8 @@ with st.container():
         st.latex(r'''Gain(S,A)=Entropy(S)-\sum_{i=1}^{n} * Entropy(S_{i})''')
         
         dt = DecisionTreeClassifier()
-        dt.fit(training, training_label)
-        acc_dt = dt.score(test, test_label)
+        dt.fit(X_train, y_train)
+        acc_dt = dt.score(X_test, y_test)
         st.write('**_Akurasi Decision Tree :_**', round(acc_dt*100, 2), '**_%_**')
 
     elif choose == "Predict":
