@@ -160,7 +160,7 @@ with st.container():
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        result_norm = pd.concat([scaled_features, data_biner], axis=1)
+        #result_norm = pd.concat([scaled_features, data_biner], axis=1)
 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
