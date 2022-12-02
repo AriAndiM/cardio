@@ -188,9 +188,9 @@ with st.container():
 
         inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
         inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
-        data_num_min = data_num.min()
-        data_num_max = data_num.max()
-        norm_input = ((inputan_num - data_num_min)/(data_num_max - data_num_min))
+        data_norm_min = data_norm.min()
+        data_norm_max = data_norm.max()
+        norm_input = ((inputan_norm - data_norm_min)/(data_norm_max - data_norm_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
