@@ -154,7 +154,7 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo','cholesterol','gluc','smoke','alco','active']]
+        data_norm = cardio[['age','height','weight','ap_hi','ap_lo']]
         #data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
