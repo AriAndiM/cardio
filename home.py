@@ -227,9 +227,9 @@ with st.container():
         # # inputan_num
         # inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
         # inputan_biner
-        x_min = x.min()
-        x_max = x.max()
-        norm_input = ((inputan_num - x_min)/(x_max - x_min))
+        data_norm_min = data_norm.min()
+        data_norm_max = data_norm.max()
+        norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         
         # join = np.concatenate((norm_input, inputan_biner))
         # join
