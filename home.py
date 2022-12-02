@@ -53,7 +53,7 @@ with st.container():
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
         x_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        # x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
+        #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         #Normalisasi
         st.markdown('<h2 style = "text-align: center;">Normalisasi Data Menggunakan MinMax</h2>', unsafe_allow_html = True)
