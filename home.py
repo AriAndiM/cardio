@@ -177,7 +177,7 @@ with st.container():
         umur = st.number_input('Umur')
         #gender = st.slider('Jenis Kelamin', 1, 2, 1)
         #option = st.selectbox('Jenis Kelamin',('Laki-laki', 'Perempuan'))
-        gender = st.option('Jenis Kelamin', ('Laki-laki','Perempuan' ))
+        gender = st.selectbox('Jenis Kelamin', ('Laki-laki','Perempuan' ))
         if gender == 'Laki-laki':
             gender = 1
         elif gender == 'Perempuan':
