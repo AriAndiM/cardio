@@ -182,15 +182,49 @@ with st.container():
             gender = 1
         elif gender == 'Perempuan':
             gender = 2
+
         tinggi_badan = st.number_input('Tinggi Badan')
         berat_badan = st.number_input('Berat Badan')
         sistolik = st.number_input('Tekanan Darah Sistolik')
         diastolik = st.number_input('Tekanan Darah Diastolik')
-        kolestrol = st.slider('Kolestrol', 1, 3, 1)
-        glukosa = st.slider('Glukosa', 1, 3, 1)
-        merokok = st.slider('Merokok', 0, 1, 0)
-        alkohol = st.slider('Alkohol', 0, 1, 0)
-        aktivitas = st.slider('Aktivitas', 0, 1, 0)
+        #kolestrol = st.slider('Kolestrol', 1, 3, 1)
+        kolestrol = st.selectbox('Kadar Kolestrol', ('Normal (< 200 mg/dL)','Diatas Normal (200 s/d 239 mg/dL)','Jauh Di atas Normal (> 240 mg/dL)' ))
+        if kolestrol == 'Normal (< 200 mg/dL)':
+            kolestrol = 1
+        elif kolestrol == 'Diatas Normal (200 s/d 239 mg/dL)':
+            kolestrol = 2
+        elif kolestrol == 'Jauh Di atas Normal (> 240 mg/dL)':
+            kolestrol = 3
+
+        glukosa = st.selectbox('Kadar glukosa', ('Normal (100 - 160 mg/dL)','Diatas Normal (160 - 240 mg/dL)','Jauh Di atas Normal (> 240 mg/dL)' ))
+        if glukosa == 'Normal (100 - 160 mg/dL)':
+            glukosa = 1
+        elif glukosa == 'Diatas Normal (160 - 240 mg/dL)':
+            glukosa = 2
+        elif glukosa == 'Jauh Di atas Normal (> 240 mg/dL)':
+            glukosa = 3
+
+        merokok = st.selectbox('Apakah anda merokok?', ('Iya','Tidak'))
+        if merokok == 'Iya':
+            merokok = 0
+        elif merokok == 'Tidak':
+            merokok = 1
+
+        alkohol = st.selectbox('Apakah anda mengonsumsi alkohol?', ('Iya','Tidak'))
+        if alkohol == 'Iya':
+            alkohol = 0
+        elif alkohol == 'Tidak':
+            alkohol = 1
+
+        aktivitas = st.selectbox('Apakah anda rajin beraktivitas?', ('Iya','Tidak'))
+        if aktivitas == 'Iya':
+            aktivitas = 0
+        elif aktivitas == 'Tidak':
+            aktivitas = 1
+        #glukosa = st.slider('Glukosa', 1, 3, 1)
+        #merokok = st.slider('Merokok', 0, 1, 0)
+        #alkohol = st.slider('Alkohol', 0, 1, 0)
+        #aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
         inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
         inputan_num
@@ -202,7 +236,7 @@ with st.container():
         
         join = np.concatenate((norm_input, inputan_biner))
         join
-        # norm_input = np.array(norm_input).reshape(1, -1)
+        norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
             "Pilih Model",
@@ -215,7 +249,7 @@ with st.container():
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
-                pred = gnb.predict(join)
+                pred = gnb.predict(norm_input)
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
