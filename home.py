@@ -223,15 +223,15 @@ with st.container():
             aktivitas = 1
     
         inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
-        inputan_num
+        # inputan_num
         inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
-        inputan_biner
+        # inputan_biner
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
         
-        join = np.concatenate((norm_input, inputan_biner))
-        join
+        # join = np.concatenate((norm_input, inputan_biner))
+        # join
         norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
