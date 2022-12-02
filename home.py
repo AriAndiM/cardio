@@ -142,7 +142,7 @@ with st.container():
 
     elif choose == "Predict":
         # form data kesehatan
-        st.markdown('<h1 style = "text-align: center; color: #c41f06;"> Prediksi Cardiovascular Diseases </h1><h3 style = "text-align: center; color: #c41f06;"> Masukkan Data Kesehatan Anda </h3>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center; color: #c41f06;"> Prediksi Cardiovascular Diseases </h1>', unsafe_allow_html = True)
         #dataset
         cardio = pd.read_csv('cardiovascular2.csv')
 
