@@ -32,7 +32,7 @@ with st.container():
         # st.markdown('<h1 style = "text-align: center;"> Deskripsi Data </h1>', unsafe_allow_html = True)
         # st.markdown('<h2>Ada 3 jenis fitur input :</h2>', unsafe_allow_html = True)
         # st.markdown('<ol type = "a"><li>Objektif : factual information;</li><li>Penelitian / penyelidikan : hasil pemeriksaan medis;</li><li>Subjektif : informasi yang diberikan oleh pasien.</li></ol>', unsafe_allow_html = True)
-        st.markdown('<h1 style = "text-align: center;"> Fitur Dataset: </h1><ol type = "1" style = "text-align: justify; background-color: #f2a916; padding: 30px; border-radius: 20px;"><li><i><b>Age</b></i> merupakan umur dari pasien yang diukur dalam satuan hari dengan tipe data int.</li><li><i><b>Height</b></i> merupakan tinggi badan dari pasien dalam satuan cm yang diukur menggunakan alat stature meter dengan tipe data integer.</li><li><i><b>Weight</b></i> merupakan berat badan dari pasien dalam satuan kg yang diukur menggunakan alat timbangan injak dengan tipe data float.</li><li><i><b>Gender</b></i> merupakan jenis kelamin dari pasien. Jenis kelamin bertipe biner yaitu perempuan dan laki-laki.</li><li><i><b>Systolic blood pressure (tekanan darah sistolik)</b></i> merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter.</li><li><i><b>Diastolic blood pressure (tekanan darah diastolik)</b></i> merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter.</li><li><i><b>Cholesterol (kolesterol)</b></i> merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL).</li><li><i><b>Glucose</b></i> (glukosa) merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. Kadar glukosa dapat diukur di laboratorium atau dengan alat glukometer. 1 : Glukosa normal kadarnya sekitar 100 - 160 mg/dL, 2 : Glukosa diatas normal kadarnya sekitar 160 - 240 mg/dL, 3 : Glukosa jauh diatas normal kadarnya di atas 240 mg/dL.</li><li><i><b>Smoking</b></i> merupakan kondisi pasien sedang merokok atau tidak</li><li><i><b>Alcohol</b></i> intake merupakan kondisi pasien apakah mengkonsumsi alkohol atau tidak.</li><li><i><b>Physical activity</b></i> merupakan kondisi pasien apakah aktif berolahraga atau tidak.</li><li><i><b>Presence</b></i> or absence of cardiovascular disease merupakan hasil diagnosa apakah pasien mengidap penyakit cardiovascular.</li></ol>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center;"> Fitur Dataset: </h1><ol type = "1" style = "text-align: justify; background-color: #f2a916; padding: 30px; border-radius: 20px;"><li><i><b>Age</b></i> merupakan umur dari pasien yang diukur dalam satuan tahun dengan tipe data int.</li><li><i><b>Height</b></i> merupakan tinggi badan dari pasien dalam satuan (cm) yang diukur menggunakan alat stature meter dengan tipe data integer.</li><li><i><b>Weight</b></i> merupakan berat badan dari pasien dalam satuan (kg) yang diukur menggunakan alat timbangan injak dengan tipe data float.</li><li><i><b>Gender</b></i> merupakan jenis kelamin dari pasien. Jenis kelamin bertipe biner yaitu perempuan dan laki-laki.</li><li><i><b>Systolic blood pressure (tekanan darah sistolik)</b></i> merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Diastolic blood pressure (tekanan darah diastolik)</b></i> merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Cholesterol (kolesterol)</b></i> merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL).</li><li><i><b>Glucose</b></i> (glukosa) merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. Kadar glukosa dapat diukur di laboratorium atau dengan alat glukometer. 1 : Glukosa normal kadarnya sekitar 100 - 160 mg/dL, 2 : Glukosa diatas normal kadarnya sekitar 160 - 240 mg/dL, 3 : Glukosa jauh diatas normal kadarnya di atas 240 mg/dL.</li><li><i><b>Smoking</b></i> merupakan kondisi pasien sedang merokok atau tidak</li><li><i><b>Alcohol intake</b></i>merupakan kondisi pasien apakah mengkonsumsi alkohol atau tidak.</li><li><i><b>Physical activity</b></i> merupakan kondisi pasien apakah aktif berolahraga atau tidak.</li><li><i><b>Presence</b></i> or absence of cardiovascular disease merupakan hasil diagnosa apakah pasien mengidap penyakit cardiovascular.</li></ol>', unsafe_allow_html = True)
 
     elif choose == "Dataset":
         st.markdown('<h1 style = "text-align: center;"> Dataset Cardiovascular </h1>', unsafe_allow_html = True)
@@ -174,7 +174,7 @@ with st.container():
         X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
 
-        umur = st.number_input('Umur')
+        umur = st.number_input('Umur (Tahun)')
         #gender = st.slider('Jenis Kelamin', 1, 2, 1)
         #option = st.selectbox('Jenis Kelamin',('Laki-laki', 'Perempuan'))
         gender = st.selectbox('Jenis Kelamin', ('Laki-laki','Perempuan' ))
@@ -183,10 +183,10 @@ with st.container():
         elif gender == 'Perempuan':
             gender = 2
 
-        tinggi_badan = st.number_input('Tinggi Badan')
-        berat_badan = st.number_input('Berat Badan')
-        sistolik = st.number_input('Tekanan Darah Sistolik')
-        diastolik = st.number_input('Tekanan Darah Diastolik')
+        tinggi_badan = st.number_input('Tinggi Badan (cm)')
+        berat_badan = st.number_input('Berat Badan (kg)')
+        sistolik = st.number_input('Tekanan Darah Sistolik (mmHg)')
+        diastolik = st.number_input('Tekanan Darah Diastolik (mmHg)')
         #kolestrol = st.slider('Kolestrol', 1, 3, 1)
         kolestrol = st.selectbox('Kadar Kolestrol', ('Normal (< 200 mg/dL)','Diatas Normal (200 s/d 239 mg/dL)','Jauh Di atas Normal (> 240 mg/dL)' ))
         if kolestrol == 'Normal (< 200 mg/dL)':
@@ -205,21 +205,21 @@ with st.container():
             glukosa = 3
 
         merokok = st.selectbox('Apakah anda merokok?', ('Iya','Tidak'))
-        if merokok == 'Iya':
+        if merokok == 'Tidak':
             merokok = 0
-        elif merokok == 'Tidak':
+        elif merokok == 'Iya':
             merokok = 1
 
         alkohol = st.selectbox('Apakah anda mengonsumsi alkohol?', ('Iya','Tidak'))
-        if alkohol == 'Iya':
+        if alkohol == 'Tidak':
             alkohol = 0
-        elif alkohol == 'Tidak':
+        elif alkohol == 'Iya':
             alkohol = 1
 
         aktivitas = st.selectbox('Apakah anda rajin beraktivitas?', ('Iya','Tidak'))
-        if aktivitas == 'Iya':
+        if aktivitas == 'Tidak':
             aktivitas = 0
-        elif aktivitas == 'Tidak':
+        elif aktivitas == 'Iya':
             aktivitas = 1
         #glukosa = st.slider('Glukosa', 1, 3, 1)
         #merokok = st.slider('Merokok', 0, 1, 0)
