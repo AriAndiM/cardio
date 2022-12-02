@@ -52,18 +52,19 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
-        x_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
+        x
         #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
         #Normalisasi
         st.markdown('<h2 style = "text-align: center;">Normalisasi Data Menggunakan MinMax</h2>', unsafe_allow_html = True)
 
+        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
+        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(x_norm)
-        features_names = x_norm.columns.copy()
+        scaled = scaler.fit_transform(data_norm)
+        features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
-        result_norm = pd.concat([scaled_features, biner], axis=1)
+        result_norm = pd.concat([scaled_features, data_biner], axis=1)
         result_norm
         
     elif choose == "Modelling":
