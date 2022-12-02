@@ -204,19 +204,19 @@ with st.container():
         elif glukosa == 'Jauh Di atas Normal (> 240 mg/dL)':
             glukosa = 3
 
-        merokok = st.selectbox('Apakah anda merokok?', ('Iya','Tidak'))
+        merokok = st.selectbox('Apakah anda merokok?', ('Tidak','Iya'))
         if merokok == 'Tidak':
             merokok = 0
         elif merokok == 'Iya':
             merokok = 1
 
-        alkohol = st.selectbox('Apakah anda mengonsumsi alkohol?', ('Iya','Tidak'))
+        alkohol = st.selectbox('Apakah anda mengonsumsi alkohol?', ('Tidak','Iya'))
         if alkohol == 'Tidak':
             alkohol = 0
         elif alkohol == 'Iya':
             alkohol = 1
 
-        aktivitas = st.selectbox('Apakah anda rajin beraktivitas?', ('Iya','Tidak'))
+        aktivitas = st.selectbox('Apakah anda rajin beraktivitas?', ('Tidak','Iya'))
         if aktivitas == 'Tidak':
             aktivitas = 0
         elif aktivitas == 'Iya':
