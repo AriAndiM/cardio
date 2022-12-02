@@ -188,10 +188,10 @@ with st.container():
         aktivitas = st.slider('Aktivitas', 0, 1, 0)
 
         inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik]
-        norm_input_num = ((inputan_num - x_min)/(x_max - x_min))
         inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
-        x_min = x.min()
-        x_max = x.max()
+        data_norm_min = data_norm.min()
+        data_norm_max = data_norm.max()
+        norm_input_num = ((inputan_num - x_min)/(x_max - x_min))
         inputan = np.concatenate((norm_input_num, inputan_biner))
         inputan = np.array(inputan).reshape(1, -1)
         inputan
