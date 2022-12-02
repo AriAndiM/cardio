@@ -202,7 +202,7 @@ with st.container():
         
         join = np.concatenate((norm_input, inputan_biner))
         join
-        norm_input = np.array(norm_input).reshape(1, -1)
+        # norm_input = np.array(norm_input).reshape(1, -1)
 
         pilih_model = st.radio(
             "Pilih Model",
@@ -215,7 +215,7 @@ with st.container():
                 gnb = GaussianNB()
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
-                pred = gnb.predict(norm_input)
+                pred = gnb.predict(join)
                 if(pred == 0):
                     st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
                     st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
