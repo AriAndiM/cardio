@@ -155,7 +155,7 @@ with st.container():
         from sklearn.preprocessing import MinMaxScaler
 
         data_norm = cardio[['age','height','weight','ap_hi','ap_lo']]
-        #data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
+        data_biner = cardio[['gender','cholesterol','gluc','smoke','alco','active']] 
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
