@@ -221,11 +221,7 @@ with st.container():
             aktivitas = 0
         elif aktivitas == 'Iya':
             aktivitas = 1
-        #glukosa = st.slider('Glukosa', 1, 3, 1)
-        #merokok = st.slider('Merokok', 0, 1, 0)
-        #alkohol = st.slider('Alkohol', 0, 1, 0)
-        #aktivitas = st.slider('Aktivitas', 0, 1, 0)
-
+    
         inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
         inputan_num
         inputan_biner = [gender,kolestrol, glukosa, merokok, alkohol, aktivitas]
