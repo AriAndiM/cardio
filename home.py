@@ -35,7 +35,7 @@ with st.container():
 
     elif choose == "Dataset":
         st.markdown('<h1 style = "text-align: center;"> Dataset Cardiovascular </h1>', unsafe_allow_html = True)
-        cardio = pd.read_csv('cardiovascular2.csv')
+        cardio = pd.read_csv('cardiovascular_train.csv')
         cardio
 
     elif choose == "Preprocessing":
@@ -47,7 +47,7 @@ with st.container():
 
         st.markdown('<h2 style = "text-align: center;">Data tanpa label / class</h2>', unsafe_allow_html = True)
         #dataset
-        cardio = pd.read_csv('cardiovascular2.csv')
+        cardio = pd.read_csv('cardiovascular_train.csv')
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
@@ -68,7 +68,7 @@ with st.container():
         
     elif choose == "Modelling":
 
-        cardio = pd.read_csv('cardiovascular2.csv')
+        cardio = pd.read_csv('cardiovascular_train.csv')
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
@@ -143,7 +143,7 @@ with st.container():
         # form data kesehatan
         st.markdown('<h1 style = "text-align: center; color: #c41f06;"> Prediksi Cardiovascular Diseases </h1>', unsafe_allow_html = True)
         #dataset
-        cardio = pd.read_csv('cardiovascular2.csv')
+        cardio = pd.read_csv('cardiovascular_train.csv')
 
         # data y_training
         y = cardio['cardio'].values
