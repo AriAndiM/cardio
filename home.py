@@ -234,17 +234,32 @@ with st.container():
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
-        
-        # join = np.concatenate((norm_input, inputan_biner))
-        # join
         norm_input = np.array(norm_input).reshape(1, -1)
+
+        #modelling
+        gnb = GaussianNB()
+        acc_gnb = gnb.score(X_test, y_test)
+        
+        knn = KNeighborsClassifier()
+        acc_knn = knn.score(X_test, y_test)
+
+        dt = KNeighborsClassifier()
+        acc_dt = dt.score(X_test, y_test)
+
+        acc = [acc_gnb,acc_knn, acc_dt]
+        max_acc = np.max(acc)
+        max_acc
+
+
+
+        cek = st.button("Cek Diagnosa", type="primary")
+        
 
         pilih_model = st.radio(
             "Pilih Model",
             ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
 
         if pilih_model == 'Gausian Naive Bayes':
-            cek = st.button("Cek Diagnosa", type="primary")
             if cek:
                 st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
                 gnb = GaussianNB()
