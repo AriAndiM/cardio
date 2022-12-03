@@ -2,7 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as html
 import pandas as pd
 import numpy as np
-import pickle
 from sklearn.preprocessing import MinMaxScaler
 from sklearn import metrics
 from streamlit_option_menu import option_menu
@@ -226,7 +225,7 @@ with st.container():
         inputan_num = [umur*365, gender, tinggi_badan, berat_badan, sistolik, diastolik]
         # # inputan_num
         inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # inputan_biner
+        # inputan 
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
         norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
