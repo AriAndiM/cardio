@@ -259,27 +259,28 @@ with st.container():
         
         st.markdown('<br>', unsafe_allow_html = True)
         cek = st.button("Cek Diagnosa", type="primary")
-        if model == 'GaussianNB':
-            gnb = GaussianNB()
-            gnb.fit(X_train, y_train)
-            prediksi = gnb.predict(X_test)
-            pred = gnb.predict(norm_input)
-            pred[0]
-            st.write('Gussian')
-        elif model == 'KNeighborsClassifier':
-            knn = KNeighborsClassifier()
-            knn.fit(X_train, y_train)
-            prediksi = knn.predict(X_test)
-            pred = knn.predict(norm_input)
-            pred[0]
-            st.write('KNeighborsClassifier')
-        elif model == 'DecisionTreeClassifier':
-            dt = DecisionTreeClassifier()
-            dt.fit(X_train, y_train)
-            prediksi = dt.predict(X_test)
-            pred = dt.predict(norm_input)
-            pred[0]
-            st.write('DecisionTreeClassifier')
+        if cek:
+            if model == 'GaussianNB':
+                gnb = GaussianNB()
+                gnb.fit(X_train, y_train)
+                prediksi = gnb.predict(X_test)
+                pred = gnb.predict(norm_input)
+                pred[0]
+                st.write('Gussian')
+            elif model == 'KNeighborsClassifier':
+                knn = KNeighborsClassifier()
+                knn.fit(X_train, y_train)
+                prediksi = knn.predict(X_test)
+                pred = knn.predict(norm_input)
+                pred[0]
+                st.write('KNeighborsClassifier')
+            elif model == 'DecisionTreeClassifier':
+                dt = DecisionTreeClassifier()
+                dt.fit(X_train, y_train)
+                prediksi = dt.predict(X_test)
+                pred = dt.predict(norm_input)
+                pred[0]
+                st.write('DecisionTreeClassifier')
         
 
 
