@@ -238,12 +238,15 @@ with st.container():
 
         #modelling
         gnb = GaussianNB()
+        gnb.fit(X_train, y_train)
         acc_gnb = gnb.score(X_test, y_test)
         
         knn = KNeighborsClassifier()
+        knn.fit(X_train, y_train)
         acc_knn = knn.score(X_test, y_test)
 
         dt = KNeighborsClassifier()
+        dt.fit(X_train, y_train)
         acc_dt = dt.score(X_test, y_test)
 
         acc = [acc_gnb,acc_knn, acc_dt]
