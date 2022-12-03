@@ -257,8 +257,8 @@ with st.container():
         elif acc[2] > acc[1] or acc[2] > acc[0]:
             model = DecisionTreeClassifier()
         
-        st.markdown('<br><br>', unsafe_allow_html = True)
-        cek = st.button("Cek Diagnosa", type="primary")
+        st.markdown('<br>', unsafe_allow_html = True)
+        cek = st.button("Cek Diagnosa", type="warning")
 
         # max_acc = np.max(acc)
         # st.write(max_acc)
