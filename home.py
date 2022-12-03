@@ -251,14 +251,37 @@ with st.container():
 
         acc = [acc_gnb,acc_knn, acc_dt]
         if acc[0] > acc[1] or acc[0] > acc[2]:
-            model = GaussianNB()
+            model = 'GaussianNB'
         elif acc[1] > acc[2] or acc[1] > acc[0]:
-            model = KNeighborsClassifier()
+            model = 'KNeighborsClassifier'
         elif acc[2] > acc[1] or acc[2] > acc[0]:
-            model = DecisionTreeClassifier()
+            model = 'DecisionTreeClassifier'
         
         st.markdown('<br>', unsafe_allow_html = True)
-        cek = st.button("Cek Diagnosa", type="warning")
+        cek = st.button("Cek Diagnosa", type="primary")
+        if model == 'GaussianNB':
+            gnb = GaussianNB()
+            gnb.fit(X_train, y_train)
+            prediksi = gnb.predict(X_test)
+            pred = gnb.predict(norm_input)
+            pred[0]
+            st.write('Gussian')
+        elif model == 'KNeighborsClassifier':
+            knn = KNeighborsClassifier()
+            knn.fit(X_train, y_train)
+            prediksi = knn.predict(X_test)
+            pred = knn.predict(norm_input)
+            pred[0]
+            st.write('KNeighborsClassifier')
+        elif model == 'DecisionTreeClassifier':
+            dt = DecisionTreeClassifier()
+            dt.fit(X_train, y_train)
+            prediksi = dt.predict(X_test)
+            pred = dt.predict(norm_input)
+            pred[0]
+            st.write('DecisionTreeClassifier')
+        
+
 
         # max_acc = np.max(acc)
         # st.write(max_acc)
