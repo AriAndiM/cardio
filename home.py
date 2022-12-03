@@ -35,7 +35,7 @@ with st.container():
 
     elif choose == "Dataset":
         st.markdown('<h1 style = "text-align: center;"> Dataset Cardiovascular </h1>', unsafe_allow_html = True)
-        cardio = pd.read_csv('cardiovascular_train.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
         cardio
 
     elif choose == "Preprocessing":
@@ -47,7 +47,7 @@ with st.container():
 
         st.markdown('<h2 style = "text-align: center;">Data tanpa label / class</h2>', unsafe_allow_html = True)
         #dataset
-        cardio = pd.read_csv('cardiovascular_train.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
@@ -57,32 +57,38 @@ with st.container():
         #Normalisasi
         st.markdown('<h2 style = "text-align: center;">Normalisasi Data Menggunakan MinMax</h2>', unsafe_allow_html = True)
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
+        data_norm = x[['age','height','weight','ap_hi','ap_lo']]
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        result_norm = pd.concat([scaled_features, data_biner], axis=1)
-        result_norm
+        x[['age','height','weight','ap_hi','ap_lo']] = scaled
+        x
         
     elif choose == "Modelling":
 
-        cardio = pd.read_csv('cardiovascular_train.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
         
         #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
+        # data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
+        # data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
+        # scaler = MinMaxScaler()
+        # scaled = scaler.fit_transform(data_norm)
+        # features_names = data_norm.columns.copy()
+        # scaled_features = pd.DataFrame(scaled, columns = features_names)
+        # result_norm = pd.concat([scaled_features, data_biner], axis=1)
+
+        data_norm = x[['age','height','weight','ap_hi','ap_lo']]
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        result_norm = pd.concat([scaled_features, data_biner], axis=1)
-                
+        x[['age','height','weight','ap_hi','ap_lo']] = scaled
+        x
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
         from sklearn.metrics import accuracy_score
@@ -143,7 +149,7 @@ with st.container():
         # form data kesehatan
         st.markdown('<h1 style = "text-align: center; color: #c41f06;"> Prediksi Cardiovascular Diseases </h1>', unsafe_allow_html = True)
         #dataset
-        cardio = pd.read_csv('cardiovascular_train.csv')
+        cardio = pd.read_csv('cardiovascular2.csv')
 
         # data y_training
         y = cardio['cardio'].values
@@ -153,13 +159,12 @@ with st.container():
         #Normalisasi
         from sklearn.preprocessing import MinMaxScaler
 
-        data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
+        data_norm = x[['age','height','weight','ap_hi','ap_lo']]
         scaler = MinMaxScaler()
         scaled = scaler.fit_transform(data_norm)
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
-        result_norm = pd.concat([scaled_features, data_biner], axis=1)
+        x[['age','height','weight','ap_hi','ap_lo']] = scaled
 
         #Model Gaussian 
         from sklearn.naive_bayes import GaussianNB
