@@ -31,7 +31,7 @@ with st.container():
         # st.markdown('<h1 style = "text-align: center;"> Deskripsi Data </h1>', unsafe_allow_html = True)
         # st.markdown('<h2>Ada 3 jenis fitur input :</h2>', unsafe_allow_html = True)
         # st.markdown('<ol type = "a"><li>Objektif : factual information;</li><li>Penelitian / penyelidikan : hasil pemeriksaan medis;</li><li>Subjektif : informasi yang diberikan oleh pasien.</li></ol>', unsafe_allow_html = True)
-        st.markdown('<h1 style = "text-align: center;"> Fitur Dataset: </h1><ol type = "1" style = "text-align: justify; background-color: #f2a916; padding: 30px; border-radius: 20px;"><li><i><b>Age</b></i> merupakan umur dari pasien yang diukur dalam satuan tahun dengan tipe data int.</li><li><i><b>Height</b></i> merupakan tinggi badan dari pasien dalam satuan (cm) yang diukur menggunakan alat stature meter dengan tipe data integer.</li><li><i><b>Weight</b></i> merupakan berat badan dari pasien dalam satuan (kg) yang diukur menggunakan alat timbangan injak dengan tipe data float.</li><li><i><b>Gender</b></i> merupakan jenis kelamin dari pasien. Jenis kelamin bertipe biner yaitu perempuan dan laki-laki.</li><li><i><b>Systolic blood pressure (tekanan darah sistolik)</b></i> merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Diastolic blood pressure (tekanan darah diastolik)</b></i> merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Cholesterol (kolesterol)</b></i> merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL).</li><li><i><b>Glucose</b></i> (glukosa) merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. Kadar glukosa dapat diukur di laboratorium atau dengan alat glukometer. 1 : Glukosa normal kadarnya sekitar 100 - 160 mg/dL, 2 : Glukosa diatas normal kadarnya sekitar 160 - 240 mg/dL, 3 : Glukosa jauh diatas normal kadarnya di atas 240 mg/dL.</li><li><i><b>Smoking</b></i> merupakan kondisi pasien sedang merokok atau tidak</li><li><i><b>Alcohol intake</b></i>merupakan kondisi pasien apakah mengkonsumsi alkohol atau tidak.</li><li><i><b>Physical activity</b></i> merupakan kondisi pasien apakah aktif berolahraga atau tidak.</li><li><i><b>Presence</b></i> or absence of cardiovascular disease merupakan hasil diagnosa apakah pasien mengidap penyakit cardiovascular.</li></ol>', unsafe_allow_html = True)
+        st.markdown('<h1 style = "text-align: center;"> Fitur Dataset: </h1><p>Dataset didapatkan dari hasil pemeriksaan medis.</p><ol type = "1" style = "text-align: justify; background-color: #f2a916; padding: 30px; border-radius: 20px;"><li><i><b>Age</b></i> merupakan umur dari pasien yang diukur dalam satuan tahun dengan tipe data int.</li><li><i><b>Height</b></i> merupakan tinggi badan dari pasien dalam satuan (cm) yang diukur menggunakan alat stature meter dengan tipe data integer.</li><li><i><b>Weight</b></i> merupakan berat badan dari pasien dalam satuan (kg) yang diukur menggunakan alat timbangan injak dengan tipe data float.</li><li><i><b>Gender</b></i> merupakan jenis kelamin dari pasien. Jenis kelamin bertipe biner yaitu perempuan dan laki-laki.</li><li><i><b>Systolic blood pressure (tekanan darah sistolik)</b></i> merupakan tekanan ketika jantung pasien memompa darah ke seluruh tubuh .Tekanan darah sistolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Diastolic blood pressure (tekanan darah diastolik)</b></i> merupakan tekanan ketika darah masuk ke dalam jantung. Tekanan darah diastolik dapat diukur menggunakan alat tensimeter dengan satuan (mmHg).</li><li><i><b>Cholesterol (kolesterol)</b></i> merupakan lemak mirip zat lilin yang terdapat dalam darah pasien. Kolesterol dapat diketahui dengan cara melakukan pemeriksaan ke rumah sakit atau puskesmas terdekat Terdapat 3 tingkatan kolesterol yaitu 1: normal yaitu kadar kolesterol < 200 (mg/dL), 2: di atas normal yaitu kadar kolesterol antara 200 s/d 239 (mg/dL), 3: jauh di atas normal yaitu kadar kolesterol > 240 (mg/dL).</li><li><i><b>Glucose</b></i> (glukosa) merupakan senyawa organik dalam bentuk karbohidrat berjenis monosakarida. Kadar glukosa dapat diukur di laboratorium atau dengan alat glukometer. 1 : Glukosa normal kadarnya sekitar 100 - 160 mg/dL, 2 : Glukosa diatas normal kadarnya sekitar 160 - 240 mg/dL, 3 : Glukosa jauh diatas normal kadarnya di atas 240 mg/dL.</li><li><i><b>Smoking</b></i> merupakan kondisi pasien sedang merokok atau tidak</li><li><i><b>Alcohol intake</b></i>merupakan kondisi pasien apakah mengkonsumsi alkohol atau tidak.</li><li><i><b>Physical activity</b></i> merupakan kondisi pasien apakah aktif berolahraga atau tidak.</li><li><i><b>Presence</b></i> or absence of cardiovascular disease merupakan hasil diagnosa apakah pasien mengidap penyakit cardiovascular.</li></ol>', unsafe_allow_html = True)
 
     elif choose == "Dataset":
         st.markdown('<h1 style = "text-align: center;"> Dataset Cardiovascular </h1>', unsafe_allow_html = True)
@@ -65,7 +65,17 @@ with st.container():
         x[['age','height','weight','ap_hi','ap_lo']] = scaled
         x
         
+        st.markdown('<div style = "text-align: justify;"><i><b>Label Encoder</b></i>adalah proses untuk melakukan transformasi dari format data atau label categorial asli menjadi format numeric. Proses ini dilakukan apabila format label berupa categorial.</div>', unsafe_allow_html = True)
+
     elif choose == "Modelling":
+        #Model Gaussian 
+        from sklearn.naive_bayes import GaussianNB
+        from sklearn.model_selection import train_test_split
+        #Model Knn
+        from sklearn.neighbors import KNeighborsClassifier
+        #Model Decisiom Tree
+        from sklearn import tree
+        from sklearn.tree import DecisionTreeClassifier
 
         cardio = pd.read_csv('cardiovascular2.csv')
         #data y_training
@@ -78,16 +88,7 @@ with st.container():
         features_names = data_norm.columns.copy()
         scaled_features = pd.DataFrame(scaled, columns = features_names)
         x[['age','height','weight','ap_hi','ap_lo']] = scaled
-        x
-        #Model Gaussian 
-        from sklearn.naive_bayes import GaussianNB
-        from sklearn.metrics import accuracy_score
-        from sklearn.model_selection import train_test_split
-        #Model Knn
-        from sklearn.neighbors import KNeighborsClassifier
-        #Model Decisiom Tree
-        from sklearn import tree
-        from sklearn.tree import DecisionTreeClassifier
+        
         
         #Splitting Data
         X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
@@ -136,7 +137,9 @@ with st.container():
         acc_dt = dt.score(X_test, y_test)
         st.write('**_Akurasi Decision Tree :_**', round(acc_dt*100, 2), '**_%_**')
 
-        st.markdown('<p style = "text-align: justify;"><b>Dapat disimpulkan bahwa model yang digunakan untuk diagnosa Cardiovascular Disease yaitu <i style = "color: green;">Model Gaussian Naive Bayes</i> Karena memiliki akurasi tertinggi.</p>', unsafe_allow_html = True)
+        st.markdown('<br>', unsafe_allow_html = True)
+
+        st.markdown('<p style = "text-align: justify;">Dapat disimpulkan bahwa model yang digunakan untuk diagnosa Cardiovascular Disease yaitu <b><i style = "color: green;">Model Gaussian Naive Bayes</i></b> Karena memiliki akurasi tertinggi.</p>', unsafe_allow_html = True)
 
     elif choose == "Predict":
         # form data kesehatan
@@ -255,9 +258,11 @@ with st.container():
                 prediksi = gnb.predict(X_test)
                 pred = gnb.predict(norm_input)
                 if pred == 0:
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_Gaussian Naive Bayes_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model Gaussian Naive Bayes", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
-                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_Gaussian Naive Bayes_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model Gaussian Naive Bayes", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
 
             elif model == 'KNeighborsClassifier':
                 knn = KNeighborsClassifier()
@@ -265,9 +270,11 @@ with st.container():
                 prediksi = knn.predict(X_test)
                 pred = knn.predict(norm_input)
                 if pred == 0:
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_K-Nearest Neighbors_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model K-Nearest Neighbors", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
-                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_K-Nearest Neighbors_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model K-Nearest Neighbors", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 
             elif model == 'DecisionTreeClassifier':
                 dt = DecisionTreeClassifier()
@@ -275,9 +282,11 @@ with st.container():
                 prediksi = dt.predict(X_test)
                 pred = dt.predict(norm_input)
                 if pred == 0:
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_Decision Tree_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model Decision Tree", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
-                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_Decision Tree_**", on_click = None, type="secondary", disabled=True )
+                    st.button("Model Decision Tree", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
         
 
 
