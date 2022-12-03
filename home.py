@@ -247,72 +247,79 @@ with st.container():
         acc_dt = dt.score(X_test, y_test)
 
         acc = [acc_gnb,acc_knn, acc_dt]
-        max_acc = np.max(acc)
-        max_acc
-
-
-
-        cek = st.button("Cek Diagnosa", type="primary")
+        if acc[0] > acc[1] or acc[0] > acc[2]:
+            model = GaussianNB()
+        elif acc[1] > acc[2] or acc[1] > acc[0]:
+            model = KNeighborsClassifier()
+        elif acc[2] > acc[1] or acc[2] > acc[0]:
+            model = DecisionTreeClassifier()
         
+        cek = st.button("Cek Diagnosa", type="primary")
 
-        pilih_model = st.radio(
-            "Pilih Model",
-            ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
+        # max_acc = np.max(acc)
+        # st.write(max_acc)
 
-        if pilih_model == 'Gausian Naive Bayes':
-            if cek:
-                st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
-                gnb = GaussianNB()
-                gnb.fit(X_train, y_train)
-                prediksi = gnb.predict(X_test)
-                pred = gnb.predict(norm_input)
-                if(pred == 0):
-                    st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
-                elif(pred == 1):
-                    st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+        # if cek:
 
-        elif pilih_model == 'K-Nearest Neighbors':
-            cek = st.button("Cek Diagnosa", type="primary")
-            if cek:
-                st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
-                knn = KNeighborsClassifier()
-                knn.fit(X_train, y_train)
-                prediksi = knn.predict(X_test)
-                pred = knn.predict(norm_input)
-                if(pred == 0):
-                    st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
 
-                elif(pred == 1):
-                    st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+        # pilih_model = st.radio(
+        #     "Pilih Model",
+        #     ('None','Gausian Naive Bayes', 'K-Nearest Neighbors', 'Decision Tree'))
 
-        elif pilih_model == 'Decision Tree':
-            cek = st.button("Cek Diagnosa", type="primary")
-            if cek:
-                st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
-                dt = DecisionTreeClassifier()
-                dt.fit(X_train, y_train)
-                prediksi = dt.predict(X_test)
-                pred = dt.predict(norm_input)
-                if(pred == 0):
-                    st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
-                elif(pred == 1):
-                    st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
-                    st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
-                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
-                    # st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
+        # if pilih_model == 'Gausian Naive Bayes':
+        #     if cek:
+        #         st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
+        #         gnb = GaussianNB()
+        #         gnb.fit(X_train, y_train)
+        #         prediksi = gnb.predict(X_test)
+        #         pred = gnb.predict(norm_input)
+        #         if(pred == 0):
+        #             st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+        #         elif(pred == 1):
+        #             st.markdown('Diagnosa dengan model **_Gaussian Naive Bayes_**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(gnb.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
 
-        elif pilih_model == 'None':
-            st.write('')
+        # elif pilih_model == 'K-Nearest Neighbors':
+        #     cek = st.button("Cek Diagnosa", type="primary")
+        #     if cek:
+        #         st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
+        #         knn = KNeighborsClassifier()
+        #         knn.fit(X_train, y_train)
+        #         prediksi = knn.predict(X_test)
+        #         pred = knn.predict(norm_input)
+        #         if(pred == 0):
+        #             st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+
+        #         elif(pred == 1):
+        #             st.markdown('Diagnosa dengan model **_K-Nearest Neighbors_**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(knn.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+
+        # elif pilih_model == 'Decision Tree':
+        #     cek = st.button("Cek Diagnosa", type="primary")
+        #     if cek:
+        #         st.markdown('<h5 style = "color: #c41f06;"> <b>Hasil Diagnosa<b> </h5>', unsafe_allow_html = True)
+        #         dt = DecisionTreeClassifier()
+        #         dt.fit(X_train, y_train)
+        #         prediksi = dt.predict(X_test)
+        #         pred = dt.predict(norm_input)
+        #         if(pred == 0):
+        #             st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+        #         elif(pred == 1):
+        #             st.markdown('Diagnosa dengan model **_Decision Tree**', unsafe_allow_html = True)
+        #             st.write('Akurasi : ',round(dt.score(X_test, y_test)*100, 2), '%')
+        #             st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="secondary", disabled=True )
+        #             # st.markdown('<p style = "color: red">Anda dinyatakan <i><b>Positif Cardiovascular</b></i><p>', unsafe_allow_html=True)
+
+        # elif pilih_model == 'None':
+        #     st.write('')
             
 
 
