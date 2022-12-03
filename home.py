@@ -71,16 +71,6 @@ with st.container():
         #data y_training
         y = cardio['cardio'].values
         x = cardio.drop(columns=['id','cardio'])
-        
-        #x_norm['age','gender','height','weight','ap_hi','ap_lo'] = x
-
-        # data_norm = cardio[['age','gender','height','weight','ap_hi','ap_lo']]
-        # data_biner = cardio[['cholesterol','gluc','smoke','alco','active']] 
-        # scaler = MinMaxScaler()
-        # scaled = scaler.fit_transform(data_norm)
-        # features_names = data_norm.columns.copy()
-        # scaled_features = pd.DataFrame(scaled, columns = features_names)
-        # result_norm = pd.concat([scaled_features, data_biner], axis=1)
 
         data_norm = x[['age','height','weight','ap_hi','ap_lo']]
         scaler = MinMaxScaler()
@@ -104,6 +94,8 @@ with st.container():
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
         
         st.markdown('<h1 style = "text-align: center;">Modelling</h1>', unsafe_allow_html = True)
+
+        st.markdown('<p style = "text-align: justify;">Modelling merupakan proses menyeleksi model yang memiliki akurasi tertinggi. Dalam diagnosa Cardiovascular Disease menggunakan 3 model sebagai berikut :</p>', unsafe_allow_html = True)
         st.markdown('<h2>1. Naive Bayes</h2><p style = "text-align: justify;">Naïve Bayes Classifier merupakan sebuah metoda klasifikasi yang berakar pada teorema Bayes . Metode pengklasifikasian dg menggunakan metode probabilitas dan statistik yg dikemukakan oleh ilmuwan Inggris Thomas Bayes , yaitu memprediksi peluang di masa depan berdasarkan pengalaman di masa sebelumnya sehingga dikenal sebagai Teorema Bayes . Ciri utama dr Naïve Bayes Classifier ini adalah asumsi yg sangat kuat (naïf) akan independensi dari masing-masing kondisi / kejadian.</p>', unsafe_allow_html = True)
 
         st.markdown('<p>Rumus :</p>', unsafe_allow_html = True)
@@ -134,7 +126,6 @@ with st.container():
         acc_knn = knn.score(X_test, y_test)
         st.write('**_Akurasi KNN :_**', round(acc_knn*100, 2), '**_%_**')
 
-        st.markdown('<h2>3. Decision Tree<p style = "text-align: justify;"></h2><p style = "text-align: justify;">Decision tree adalah algoritma machine learning yang menggunakan seperangkat aturan untuk membuat keputusan dengan struktur seperti pohon yang memodelkan kemungkinan hasil, biaya sumber daya, utilitas dan kemungkinan konsekuensi atau resiko. Konsepnya adalah dengan cara menyajikan algoritma dengan pernyataan bersyarat, yang meliputi cabang untuk mewakili langkah-langkah pengambilan keputusan yang dapat mengarah pada hasil yang menguntungkan.</p>', unsafe_allow_html = True)
         st.markdown('<p>Rumus Entropy:</p>', unsafe_allow_html = True)
         st.latex(r'''Entropy (S) = \sum_{i=1}^{n}-\pi * log_{2}\pi ''')
         st.markdown('<p>Rumus Gain:</p>', unsafe_allow_html = True)
@@ -145,28 +136,12 @@ with st.container():
         acc_dt = dt.score(X_test, y_test)
         st.write('**_Akurasi Decision Tree :_**', round(acc_dt*100, 2), '**_%_**')
 
+        st.markdown('<p style = "text-align: justify;"><b>Dapat disimpulkan bahwa model yang digunakan untuk diagnosa Cardiovascular Disease yaitu <i style = "color: green;">Model Gaussian Naive Bayes</i> Karena memiliki akurasi tertinggi.</p>', unsafe_allow_html = True)
+
     elif choose == "Predict":
         # form data kesehatan
         st.markdown('<h1 style = "text-align: center; color: #c41f06;"> Prediksi Cardiovascular Diseases </h1>', unsafe_allow_html = True)
-        #dataset
-        cardio = pd.read_csv('cardiovascular2.csv')
-
-        # data y_training
-        y = cardio['cardio'].values
-        # data terbaru
-        x = cardio.drop(columns=['id','cardio'])
-
-        #Normalisasi
-        from sklearn.preprocessing import MinMaxScaler
-
-        data_norm = x[['age','height','weight','ap_hi','ap_lo']]
-        scaler = MinMaxScaler()
-        scaled = scaler.fit_transform(data_norm)
-        features_names = data_norm.columns.copy()
-        scaled_features = pd.DataFrame(scaled, columns = features_names)
-        x[['age','height','weight','ap_hi','ap_lo']] = scaled
-
-        #Model Gaussian 
+        
         from sklearn.naive_bayes import GaussianNB
         from sklearn.neighbors import KNeighborsClassifier
         from sklearn import tree
@@ -174,13 +149,29 @@ with st.container():
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
 
+        #dataset
+        cardio = pd.read_csv('cardiovascular2.csv')
+
+        # data y_training
+        y = cardio['cardio'].values
+        # data drop label
+        x = cardio.drop(columns=['id','cardio'])
+
+        #Normalisasi -> Preprocessing
+        from sklearn.preprocessing import MinMaxScaler
+
+        data_norm = x[['age','height','weight','ap_hi','ap_lo']]
+        scaler = MinMaxScaler()
+        scaled = scaler.fit_transform(data_norm)
+        features_names = data_norm.columns.copy()
+        scaled_features = pd.DataFrame(scaled, columns = features_names)
+        x[['age','height','weight','ap_hi','ap_lo']] = scaled 
+
         #splitting data
         X_train, X_test = train_test_split(scaled, train_size = 0.8, test_size = 0.2, shuffle = False)
         y_train, y_test = train_test_split(y, train_size = 0.8, test_size = 0.2, shuffle = False)
 
         umur = st.number_input('Umur (Tahun)')
-        #gender = st.slider('Jenis Kelamin', 1, 2, 1)
-        #option = st.selectbox('Jenis Kelamin',('Laki-laki', 'Perempuan'))
         gender = st.selectbox('Jenis Kelamin', ('Laki-laki','Perempuan' ))
         if gender == 'Laki-laki':
             gender = 1
@@ -191,7 +182,7 @@ with st.container():
         berat_badan = st.number_input('Berat Badan (kg)')
         sistolik = st.number_input('Tekanan Darah Sistolik (mmHg)')
         diastolik = st.number_input('Tekanan Darah Diastolik (mmHg)')
-        #kolestrol = st.slider('Kolestrol', 1, 3, 1)
+
         kolestrol = st.selectbox('Kadar Kolestrol', ('Normal (< 200 mg/dL)','Diatas Normal (200 s/d 239 mg/dL)','Jauh Di atas Normal (> 240 mg/dL)' ))
         if kolestrol == 'Normal (< 200 mg/dL)':
             kolestrol = 1
@@ -226,14 +217,10 @@ with st.container():
         elif aktivitas == 'Iya':
             aktivitas = 1
     
-        #inputan_num = [umur, gender, tinggi_badan, berat_badan, sistolik, diastolik, kolestrol, glukosa, merokok, alkohol, aktivitas]
-        inputan_num = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
-        # # inputan_num
-        #inputan_biner = [kolestrol, glukosa, merokok, alkohol, aktivitas]
-        # inputan 
+        inputan = [umur*365, tinggi_badan, berat_badan, sistolik, diastolik]
         data_norm_min = data_norm.min()
         data_norm_max = data_norm.max()
-        norm_input = ((inputan_num - data_norm_min)/(data_norm_max - data_norm_min))
+        norm_input = ((inputan - data_norm_min)/(data_norm_max - data_norm_min))
         norm_input = np.array(norm_input).reshape(1, -1)
 
         #modelling
@@ -258,6 +245,8 @@ with st.container():
             model = 'DecisionTreeClassifier'
         
         st.markdown('<br>', unsafe_allow_html = True)
+
+        #Implementasi
         cek = st.button("Cek Diagnosa", type="primary")
         if cek:
             if model == 'GaussianNB':
@@ -265,22 +254,30 @@ with st.container():
                 gnb.fit(X_train, y_train)
                 prediksi = gnb.predict(X_test)
                 pred = gnb.predict(norm_input)
-                pred[0]
-                st.write('Gussian')
+                if pred == 0:
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_Gaussian Naive Bayes_**", on_click = None, type="secondary", disabled=True )
+                elif pred == 1:
+                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_Gaussian Naive Bayes_**", on_click = None, type="secondary", disabled=True )
+
             elif model == 'KNeighborsClassifier':
                 knn = KNeighborsClassifier()
                 knn.fit(X_train, y_train)
                 prediksi = knn.predict(X_test)
                 pred = knn.predict(norm_input)
-                pred[0]
-                st.write('KNeighborsClassifier')
+                if pred == 0:
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_K-Nearest Neighbors_**", on_click = None, type="secondary", disabled=True )
+                elif pred == 1:
+                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_K-Nearest Neighbors_**", on_click = None, type="secondary", disabled=True )
+                
             elif model == 'DecisionTreeClassifier':
                 dt = DecisionTreeClassifier()
                 dt.fit(X_train, y_train)
                 prediksi = dt.predict(X_test)
                 pred = dt.predict(norm_input)
-                pred[0]
-                st.write('DecisionTreeClassifier')
+                if pred == 0:
+                    st.button("Anda dinyatakan **_Negatif Cardiovascular_** menggunakan model **_Decision Tree_**", on_click = None, type="secondary", disabled=True )
+                elif pred == 1:
+                    st.button("Anda dinyatakan **Positif Cardiovascular_** menggunakan model **_Decision Tree_**", on_click = None, type="secondary", disabled=True )
         
 
 
