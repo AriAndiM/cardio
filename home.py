@@ -238,7 +238,7 @@ with st.container():
         knn.fit(X_train, y_train)
         acc_knn = knn.score(X_test, y_test)
 
-        dt = DecisionTreeClassier()
+        dt = DecisionTreeClassifier()
         dt.fit(X_train, y_train)
         acc_dt = dt.score(X_test, y_test)
 
