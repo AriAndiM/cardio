@@ -153,6 +153,7 @@ with st.container():
         from sklearn.tree import DecisionTreeClassifier
         from sklearn.metrics import accuracy_score
         from sklearn.model_selection import train_test_split
+        from sklearn.preprocessing import MinMaxScaler
 
         #dataset
         cardio = pd.read_csv('cardiovascular2.csv')
@@ -163,7 +164,7 @@ with st.container():
         x = cardio.drop(columns=['id','cardio'])
 
         #Normalisasi -> Preprocessing
-        from sklearn.preprocessing import MinMaxScaler
+
 
         data_norm = x[['age','height','weight','ap_hi','ap_lo']]
         scaler = MinMaxScaler()
@@ -237,7 +238,7 @@ with st.container():
         knn.fit(X_train, y_train)
         acc_knn = knn.score(X_test, y_test)
 
-        dt = KNeighborsClassifier()
+        dt = DecisionTreeClassier()
         dt.fit(X_train, y_train)
         acc_dt = dt.score(X_test, y_test)
 
