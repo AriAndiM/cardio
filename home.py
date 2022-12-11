@@ -265,7 +265,7 @@ with st.container():
                     st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
                     st.button("Model Gaussian Naive Bayes", on_click = None, type="primary", disabled=True )
-                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
 
             elif model == 'KNeighborsClassifier':
                 knn = KNeighborsClassifier()
@@ -277,7 +277,7 @@ with st.container():
                     st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
                     st.button("Model K-Nearest Neighbors", on_click = None, type="primary", disabled=True )
-                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 
             elif model == 'DecisionTreeClassifier':
                 dt = DecisionTreeClassifier()
@@ -289,7 +289,7 @@ with st.container():
                     st.button("Anda dinyatakan **_Negatif Cardiovascular_**", on_click = None, type="primary", disabled=True )
                 elif pred == 1:
                     st.button("Model Decision Tree", on_click = None, type="primary", disabled=True )
-                    st.button("Anda dinyatakan **Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
+                    st.button("Anda dinyatakan **_Positif Cardiovascular_**", on_click = None, type="primary", disabled=True )
         
 
 
